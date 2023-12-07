@@ -21,10 +21,11 @@
 > $ quit
 
 ### Formatting the disks (X = partition letter)
-
+```
 mkfs.fat -F32 /dev/sdX1    -- formats the efi partition to fat32
 mkfs.ext4 /dev/sdX2    -- formats the rootfs partition to ext4
 mkfs.ext4 /dev/sdx3    -- formats the home partition to ext4
+```
 
 ### Mouting the partitions (X = partition letter)
 
