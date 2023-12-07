@@ -4,7 +4,7 @@
 
 wipefs -a /dev/sdX    -- wipe the entire disk 
 
-parted -a optimal /dev/sdX
+> $ parted -a optimal /dev/sdX
 unit MiB 
 mklabel gpt    -- creates a gpt partition label
 mkpart "EFI" ext4 1MiB 129MiB    -- creates a 128MiB efi partition
@@ -154,7 +154,7 @@ placebo    -- add a silly hostname
 nano /etc/hosts
 ->
 
-# IPv4 and IPv6*    -- (- means delete line, + means add line)
+IPv4 and IPv6*    -- (- means delete line, + means add line)
 -127.0.0.1    localhost
 +127.0.0.1    HOSTNAME.homenetwork    HOSTNAME    localhost
 
