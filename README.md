@@ -212,17 +212,19 @@ nano /etc/fstab
 ### Changing the hostname and editing hosts 
 ```
 nano /etc/hostname
-->
+```
 
-placebo    -- add a silly hostname
+`+ PLACEBO` add a silly hostname
 
-
+```
 nano /etc/hosts
-->
+```
 
-IPv4 and IPv6*    -- (- means delete line, + means add line)
--127.0.0.1    localhost
-+127.0.0.1    HOSTNAME.homenetwork    HOSTNAME    localhost
+`> IPv4 and IPv6*`    
+
+`- 127.0.0.1    localhost`
+
+`+ 127.0.0.1    PLACEBO.homenetwork    PLACEBO    localhost` PLACEBO being the hostname you have set 
 ```
 
 ### Necessary tools
