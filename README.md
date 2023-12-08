@@ -125,16 +125,15 @@ eselect profile set NUMBER    -- selects the desired profile (standard for minim
 ```
 
 ### Changing USE flags
-```
-# refer to the gentoo handbook for more info
 
-nano /etc/portage/make.conf
 -> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+```
+nano /etc/portage/make.conf
+```
 
 `> NOTE*`
 
 `+ USE=""` 
-```
 
 ### Update the @world packages
 ```
