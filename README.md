@@ -11,7 +11,7 @@
 ### Cheat sheet
 
 | Word        | Meaning      |
-| :---------- | :------------|
+| :---------- | :----------- |
 | **part(s)** | partition(s) |
 | **dir**     | directory    |
 
@@ -19,7 +19,7 @@
 | :-------| :---------- |
 | **X**   | part letter |
 
-### Partitioning the disks (X = part letter, use lsblk to find out)
+### Partitioning the disks
 ```
 wipefs -a /dev/sdX                         # wipe the entire disk 
 
@@ -34,14 +34,14 @@ set 1 esp                                  # sets part 1 to receive the esp
 quit
 ```
 
-### Formatting the disks (X = part letter)
+### Formatting the disks 
 ```
 mkfs.fat -F32 /dev/sdX1          # formats the efi part    
 mkfs.ext4 /dev/sdX2              # formats the rootfs part    
 mkfs.ext4 /dev/sdx3              # formats the home part    
 ```
 
-### Mounting the parts (X = part letter)
+### Mounting the parts 
 ```
 mount /dev/sdX2 /mnt/gentoo               # mounts the rootfs to the mount point
 mkdir -p /mnt/gentoo/home                 # creates the home dir
@@ -117,15 +117,16 @@ eselect profile list
 eselect profile set NUMBER    -- selects the desired profile (standard for minimal)
 ```
 
-### Changing USE flags    -- refer to the gentoo handbook for more info
+### Changing USE flags
 ```
-nano /etc/portage/make.conf
-->
+# refer to the gentoo handbook for more info
 
-NOTE*
-USE=""    -- add below notes
-          -- edit it to enable/disable support to certain dependencies
+nano /etc/portage/make.conf
 ```
+->
+`NOTE*
+USE=""    -- add below notes
+          -- edit it to enable/disable support to certain dependencies`
 
 ### Update the @world packages
 ```
