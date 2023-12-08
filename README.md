@@ -214,7 +214,7 @@ nano /etc/fstab
 nano /etc/hostname
 ```
 
-`+ PLACEBO` add a silly hostname
+`+ HOSTNAME` add a silly hostname
 
 ```
 nano /etc/hosts
@@ -224,12 +224,17 @@ nano /etc/hosts
 
 `- 127.0.0.1    localhost`
 
-`+ 127.0.0.1    PLACEBO.homenetwork    PLACEBO    localhost` PLACEBO being the hostname you have set 
-```
+`+ 127.0.0.1    HOSTNAME.homenetwork    HOSTNAME    localhost`
+HOSTNAME being the hostname you set on /etc/hostname
 
 ### Necessary tools
 ```
-emerge -av net-wireless/wpa_supplicant net-misc/dhcpcd app-admin/sudo app-editors/neovim grub 
+emerge -av net-wireless/wpa_supplicant          # wireless connections management
+emerge -av net-misc/dhcpcd                      # network card ip configuration
+emerge -av app-admin/sudo                       # user root privileges
+emerge -av app-editors/neovim                   # preferred text editor
+emerge -av sys-boot/grub                        # system bootloader
+
 ```
 
 ### Creating users and editing groups
