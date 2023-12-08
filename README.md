@@ -5,32 +5,32 @@
   * [Partitioning the disks](#partitioning-the-disks)
   * [Downloading the stage tarball](#downloading-the-stage-tarball)
 
-## Installation
+## Installation (part(s) = partition(s), dir = directory)
 
 
-### Partitioning the disks (X = partition letter, use lsblk to find out)
+### Partitioning the disks (X = part letter, use lsblk to find out)
 ```
-wipefs -a /dev/sdX                   # wipe the entire disk 
+wipefs -a /dev/sdX                       # wipe the entire disk 
 
 parted -a optimal /dev/sdX
 unit MiB 
-mklabel gpt                          # creates a gpt partition label
-mkpart "EFI" ext4 1MiB 129MiB        # creates a 128MiB efi partition
-mkpart "rootfs" ext4 129MiB 70GiB    # creates a 70GiB rootfs partition
-mkpart "home" ext4 70GiB 100%        # creates a home partition using the remaining disk space
-set 1 esp                            # sets partition 1 to receive the esp
+mklabel gpt                              # creates a gpt part label
+mkpart "EFI" ext4 1MiB 129MiB            # creates a 128MiB efi part
+mkpart "rootfs" ext4 129MiB 70GiB        # creates a 70GiB rootfs part
+mkpart "home" ext4 70GiB 100%            # uses remaining disk to create a home part 
+set 1 esp                                # sets part 1 to receive the esp
 
 quit
 ```
 
-### Formatting the disks (X = partition letter)
+### Formatting the disks (X = part letter)
 ```
-mkfs.fat -F32 /dev/sdX1    -- formats the efi partition to fat32
-mkfs.ext4 /dev/sdX2    -- formats the rootfs partition to ext4
-mkfs.ext4 /dev/sdx3    -- formats the home partition to ext4
+mkfs.fat -F32 /dev/sdX1        # formats the efi part    
+mkfs.ext4 /dev/sdX2            # formats the rootfs part    
+mkfs.ext4 /dev/sdx3            # formats the home part    
 ```
 
-### Mouting the partitions (X = partition letter)
+### Mouting the parts (X = part letter)
 ```
 mount /dev/sdX2 /mnt/gentoo    -- mounts the rootfs to the mount point
 mkdir -p /mnt/gentoo/home    -- creates the home directory
