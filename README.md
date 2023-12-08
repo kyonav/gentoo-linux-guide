@@ -1,4 +1,11 @@
-# gentoo linux install guide (gpt, efi, ext4, home part, amd64, stage3-openrc, manual kernel)
+## gentoo linux install guide (gpt, efi, ext4, home part, amd64, stage3-openrc, manual kernel)
+
+## Table of Contents
+* [Installation](#installation)
+  * [Partitioning the disks](#partitioning-the-disks)
+
+## Installation
+
 
 ### Partitioning the disks (X = partition letter, use lsblk to find out)
 ```
