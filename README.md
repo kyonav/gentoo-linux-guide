@@ -181,12 +181,12 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 
 ### Compiling the kernel
 
-### Pre compiled kernel (noob)
+### Pre compiled kernel (sadge)
 ```
 emerge --ask sys-kernel/gentoo-sources sys-kernel/gentoo-kernel-bin sys-kernel/linux-firmware
 ```
 
-### Manual kernel (chad)
+### Manual kernel (chadding)
 ```
 emerge --ask sys-kernel/gentoo-sources sys-kernel/linux-firmware          
 cd /usr/src/linux*
@@ -196,15 +196,16 @@ make menuconfig
 make && make modules_install && make install
 ```
 
-### Generating an fstab    -- (X = partition letter)
+### Generating an fstab
+
+> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /etc/fstab
-->
-
-/dev/sdX1        /boot/efi        fat32        defaults        0 2
-/dev/sdX2        /                ext4         defaults        0 1
-/dev/sdX3        /home            ext4         defaults        0 1
 ```
+
+`+ /dev/sdX1        /boot/efi        fat32        defaults        0 2`
+`+ /dev/sdX2        /                ext4         defaults        0 1`
+`+ /dev/sdX3        /home            ext4         defaults        0 1`
 
 ### Changing the hostname and editing hosts 
 ```
