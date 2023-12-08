@@ -66,8 +66,8 @@ dhcpcd CARD_NAME                                                          # sets
 
 ### Downloading the stage tarball
 ```
-cd /mnt/gentoo    -- cd into the mount point
-links https://gentoo.org/downloads    -- use links tool to download amd64 stage3-openrc tarball
+cd /mnt/gentoo                              # cd into the mount point
+links https://gentoo.org/downloads          # use links tool to download amd64 stage3-openrc tarball
 
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
@@ -129,12 +129,12 @@ eselect profile set NUMBER    -- selects the desired profile (standard for minim
 # refer to the gentoo handbook for more info
 
 nano /etc/portage/make.conf
-```
--> [a link](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+-> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 
 `> NOTE*`
 
 `+ USE=""` 
+```
 
 ### Update the @world packages
 ```
