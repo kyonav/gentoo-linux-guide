@@ -75,7 +75,7 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extra
 
 ### Adding makeopts to the make.conf file
  
-> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+> [Cheat/Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /mnt/gentoo/etc/portage/make.conf
 ```
@@ -128,7 +128,7 @@ eselect profile set NUMBER          # selects the desired profile (standard for 
 
 ### Changing USE flags
 
--> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+-> [Cheat/Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /etc/portage/make.conf
 ```
@@ -144,7 +144,7 @@ emerge --ask --verbose --update --deep --newuse @world
 
 ### Configuring the ACCEPT_LICENSE variable
 
--> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+-> [Cheat/Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /etc/portage/make.conf
 ```
@@ -161,7 +161,7 @@ emerge --config sys-libs/timezone-data
 
 ### Generating the locale
 
--> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+-> [Cheat/Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /etc/locale.gen
 ```
@@ -180,12 +180,19 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ```
 
 ### Compiling the kernel
-```
-emerge --ask sys-kernel/gentoo-sources
-cd /usr/src/linux*
-make menuconfig    -- then compile as you wish
 
-emerge --ask sys-kernel/linux-firmware
+### Pre compiled kernel (noob)
+```
+emerge --ask sys-kernel/gentoo-sources sys-kernel/gentoo-kernel-bin sys-kernel/linux-firmware
+
+### Manual kernel (chad)
+```
+emerge --ask sys-kernel/gentoo-sources sys-kernel/linux-firmware          
+cd /usr/src/linux*
+make menuconfig                                 
+```
+```
+make && make modules_install && make install
 ```
 
 ### Generating an fstab    -- (X = partition letter)
