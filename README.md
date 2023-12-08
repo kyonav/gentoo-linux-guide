@@ -204,7 +204,9 @@ nano /etc/fstab
 ```
 
 `+ /dev/sdX1        /boot/efi        fat32        defaults        0 2`
+
 `+ /dev/sdX2        /                ext4         defaults        0 1`
+
 `+ /dev/sdX3        /home            ext4         defaults        0 1`
 
 ### Changing the hostname and editing hosts 
