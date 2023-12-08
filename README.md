@@ -3,7 +3,7 @@
 ## Table of Contents
 * [Installation](#installation)
   * [Partitioning the disks](#partitioning-the-disks)
-  * [Downloading the stage tarball] (#downloading-the-stage-tarball)
+  * [Downloading the stage tarball](#downloading-the-stage-tarball)
 
 ## Installation
 
