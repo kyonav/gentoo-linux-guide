@@ -10,9 +10,14 @@
 
 ### Cheat sheet
 
-| Word        | Means           |
-| :---------- | :-------------- |
-| **part(s)** | partition(s)    |
+| Word        | Meaning      |
+| :---------- | :------------|
+| **part(s)** | partition(s) |
+| **dir**     | directory    |
+
+| Letter  | Equals      |
+| :-------| :---------- |
+| **X**   | part letter |
 
 ### Partitioning the disks (X = part letter, use lsblk to find out)
 ```
