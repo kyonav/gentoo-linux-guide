@@ -19,6 +19,12 @@
 | :-------| :---------- |
 | **X**   | part letter |
 
+| Symbol | Means       |
+| :----- | :---------- |
+| **>**  | after line  |
+| **+**  | add line    |
+| **-**  | remove line |
+
 ### Partitioning the disks
 ```
 wipefs -a /dev/sdX                         # wipe the entire disk 
