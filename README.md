@@ -184,6 +184,7 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ### Pre compiled kernel (noob)
 ```
 emerge --ask sys-kernel/gentoo-sources sys-kernel/gentoo-kernel-bin sys-kernel/linux-firmware
+```
 
 ### Manual kernel (chad)
 ```
@@ -191,7 +192,6 @@ emerge --ask sys-kernel/gentoo-sources sys-kernel/linux-firmware
 cd /usr/src/linux*
 make menuconfig                                 
 ```
-
 ```
 make && make modules_install && make install
 ```
