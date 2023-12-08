@@ -2,11 +2,17 @@
 
 ## Table of Contents
 * [Installation](#installation)
+  * [Cheat sheet](#cheat-sheet)
   * [Partitioning the disks](#partitioning-the-disks)
   * [Downloading the stage tarball](#downloading-the-stage-tarball)
 
-## Installation (part(s) = partition(s), dir = directory)
+## Installation 
 
+### Cheat sheet
+
+| Word        | Means           |
+| :---------- | :-------------- |
+| **part(s)** | partition(s)    |
 
 ### Partitioning the disks (X = part letter, use lsblk to find out)
 ```
