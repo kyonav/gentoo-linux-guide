@@ -9,8 +9,8 @@
 
 
 ### Partitioning the disks (X = partition letter, use lsblk to find out)
-
-```wipefs -a /dev/sdX```    -- wipe the entire disk 
+```
+wipefs -a /dev/sdX    ```-- wipe the entire disk``` 
 parted -a optimal /dev/sdX
 unit MiB 
 mklabel gpt    -- creates a gpt partition label
@@ -19,6 +19,7 @@ mkpart "rootfs" ext4 129MiB 70GiB    -- creates a 70GiB rootfs partition
 mkpart "home" ext4 70GiB 100%    -- creates a home partition using the remaining disk space
 set 1 esp    -- sets partition 1 to receive the esp
 quit
+```
 
 ### Formatting the disks (X = partition letter)
 ```
