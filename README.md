@@ -124,9 +124,8 @@ eselect profile set NUMBER    -- selects the desired profile (standard for minim
 nano /etc/portage/make.conf
 ```
 ->
-`NOTE*
-USE=""    -- add below notes
-          -- edit it to enable/disable support to certain dependencies`
+`> NOTE*`
+`+ USE=""` -- edit this lane to enable/disable support for specific dependencies
 
 ### Update the @world packages
 ```
