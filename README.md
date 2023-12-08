@@ -129,7 +129,7 @@ eselect profile set NUMBER    -- selects the desired profile (standard for minim
 
 nano /etc/portage/make.conf
 ```
--> [a link](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+-> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 
 `> NOTE*`
 
