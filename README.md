@@ -10,40 +10,40 @@
 
 ### Partitioning the disks (X = part letter, use lsblk to find out)
 ```
-wipefs -a /dev/sdX                       # wipe the entire disk 
+wipefs -a /dev/sdX                         # wipe the entire disk 
 
 parted -a optimal /dev/sdX
 unit MiB 
-mklabel gpt                              # creates a gpt part label
-mkpart "EFI" ext4 1MiB 129MiB            # creates a 128MiB efi part
-mkpart "rootfs" ext4 129MiB 70GiB        # creates a 70GiB rootfs part
-mkpart "home" ext4 70GiB 100%            # uses remaining disk to create a home part 
-set 1 esp                                # sets part 1 to receive the esp
+mklabel gpt                                # creates a gpt part label
+mkpart "EFI" ext4 1MiB 129MiB              # creates a 128MiB efi part
+mkpart "rootfs" ext4 129MiB 70GiB          # creates a 70GiB rootfs part
+mkpart "home" ext4 70GiB 100%              # uses remaining disk to create a home part 
+set 1 esp                                  # sets part 1 to receive the esp
 
 quit
 ```
 
 ### Formatting the disks (X = part letter)
 ```
-mkfs.fat -F32 /dev/sdX1        # formats the efi part    
-mkfs.ext4 /dev/sdX2            # formats the rootfs part    
-mkfs.ext4 /dev/sdx3            # formats the home part    
+mkfs.fat -F32 /dev/sdX1          # formats the efi part    
+mkfs.ext4 /dev/sdX2              # formats the rootfs part    
+mkfs.ext4 /dev/sdx3              # formats the home part    
 ```
 
-### Mouting the parts (X = part letter)
+### Mounting the parts (X = part letter)
 ```
-mount /dev/sdX2 /mnt/gentoo    -- mounts the rootfs to the mount point
-mkdir -p /mnt/gentoo/home    -- creates the home directory
-mount /dev/sdX3 /mnt/gentoo/home    -- mounts the home part to the home dir
-mkdir -p /mnt/boot/efi    -- create the esp dir
-mount /dev/sdX1 /mnt/boot/efi    -- mounts the efi part to the efi dir
+mount /dev/sdX2 /mnt/gentoo               # mounts the rootfs to the mount point
+mkdir -p /mnt/gentoo/home                 # creates the home dir
+mount /dev/sdX3 /mnt/gentoo/home          # mounts the home part to the home dir
+mkdir -p /mnt/boot/efi                    # create the esp dir
+mount /dev/sdX1 /mnt/boot/efi             # mounts the efi part to the efi dir
 ```
 
 ### Connecting to the internet (Wireless)
 ```
-wpa_passphrase "ESSID" "PASSWORD" | tee /etc/wpa_supplicant.conf
-wpa_supplicant -B -c /etc/wpa_supplicant.conf -i CARD_NAME    -- use ipconfig to find out your card name
-dhcpcd CARD_NAME
+wpa_passphrase "ESSID" "PASSWORD" | tee /etc/wpa_supplicant.conf          # stores password on wpa conf
+wpa_supplicant -B -c /etc/wpa_supplicant.conf -i CARD_NAME                # use ipconfig to find out your card name
+dhcpcd CARD_NAME                                                          # sets an ip to your card
 ```
 
 ### Downloading the stage tarball
