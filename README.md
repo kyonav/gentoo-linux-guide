@@ -20,11 +20,12 @@
 | :-------| :---------- |
 | **X**   | part letter |
 
-| Symbol | Means       |
-| :----- | :---------- |
-| **>**  | after line  |
-| **+**  | add line    |
-| **-**  | remove line |
+| Symbol | Means          |
+| :----- | :------------- |
+| **>**  | after line     |
+| **+**  | add line       |
+| **-**  | remove line    |
+| **#**  | uncomment line |
 
 ### Partitioning the disks
 ```
@@ -66,15 +67,15 @@ dhcpcd CARD_NAME                                                          # sets
 
 ### Downloading the stage tarball
 ```
-cd /mnt/gentoo                              # cd into the mount point
-links https://gentoo.org/downloads          # use links tool to download amd64 stage3-openrc tarball
+cd /mnt/gentoo                                                           # cd into the mount point
+links https://gentoo.org/downloads                                       # use links tool to download amd64 stage3-openrc tarball
 
-tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extracts the tarball
 ```
 
 ### Adding makeopts to the make.conf file
  
-- [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /mnt/gentoo/etc/portage/make.conf
 ```
@@ -85,7 +86,7 @@ nano /mnt/gentoo/etc/portage/make.conf
 
 ### Changing the mirrors
 ```
-mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf    -- select the preferred mirror
+mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf          # select the preferred mirror
 ```
 
 ### Copying the DNS info
@@ -106,9 +107,9 @@ mount --make-slave /mnt/gentoo/run
 
 ### Chrooting into the filesystem
 ```
-chroot /mnt/gentoo
-source /etc/profile
-export PS1="(chroot UwU) ${PS1}"    -- changes the terminal style
+chroot /mnt/gentoo                        # chroot into the filesystem
+source /etc/profile                       # sources the shell profile                       
+export PS1="(chroot UwU) ${PS1}"          # changes the terminal style
 ```
 
 ### Synchronizing the repositories
@@ -119,10 +120,10 @@ emerge-webrsync
 ### Reading news items and changing the profile
 ```
 eselect news list
-eselect news read NUMBER    -- reads the selected news
+eselect news read NUMBER            # reads the selected news
 
 eselect profile list
-eselect profile set NUMBER    -- selects the desired profile (standard for minimal)
+eselect profile set NUMBER          # selects the desired profile (standard for minimal)
 ```
 
 ### Changing USE flags
@@ -142,28 +143,32 @@ emerge --ask --verbose --update --deep --newuse @world
 ```
 
 ### Configuring the ACCEPT_LICENSE variable
+
+-> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /etc/portage/make.conf
-->
-
-USE=*
-ACCEPT_LICENSE="*"    -- add below use
-                      -- use a * to accept all licenses
 ```
+
+`> USE*`
+
+`+ ACCEPT_LICENSE="*"`   
 
 ### Changing the timezone
 ```
-echo "Asia/Dubai" > /etc/timezone    -- Asia/Dubai is just an example
-emerge --config sys-libs/timezone-data
+echo "Asia/Dubai" > /etc/timezone               # Asia/Dubai is just an example 
+emerge --config sys-libs/timezone-data          
 ```
 
 ### Generating the locale
+
+-> [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /etc/locale.gen
-->
+```
 
-#en_US.UTF-8 UTF-8     -- uncomment this line
+`# #en_US.UTF-8 UTF-8`     
 
+```
 locale-gen
 eselect locale list
 eselect locale set NUMBER
