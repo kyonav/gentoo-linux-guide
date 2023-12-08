@@ -73,14 +73,15 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 ```
 
 ### Adding makeopts to the make.conf file
+ 
+- [Symbols](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /mnt/gentoo/etc/portage/make.conf
-->
-
-FFLAGS=*
-MAKEOPTS="-jY"    -- add this line under FFLAGS
-                  -- change Y to the desired threads number
 ```
+
+`> FFLAGS=*`
+
+`+ MAKEOPTS="-jY"`    
 
 ### Changing the mirrors
 ```
