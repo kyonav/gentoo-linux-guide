@@ -10,7 +10,7 @@
 
 ### Partitioning the disks (X = partition letter, use lsblk to find out)
 ```
-wipefs -a /dev/sdX    ```-- wipe the entire disk``` 
+wipefs -a /dev/sdX  # wipe the entire disk 
 parted -a optimal /dev/sdX
 unit MiB 
 mklabel gpt    -- creates a gpt partition label
