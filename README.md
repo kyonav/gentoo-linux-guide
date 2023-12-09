@@ -21,12 +21,12 @@
 | :-------| :---------- |
 | **X**   | part letter |
 
-| Symbol | Means          |
-| :----- | :------------- |
-| **>**  | after line     |
-| **+**  | add line       |
-| **-**  | remove line    |
-| **#**  | uncomment line |
+| Symbol  | Means          |
+| :------ | :------------- |
+| **>>**  | after line     |
+| **++**  | add line       |
+| **--**  | remove line    |
+| **-#**  | uncomment line |
 
 ### Partitioning the disks
 ```
@@ -81,9 +81,9 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extra
 nano /mnt/gentoo/etc/portage/make.conf
 ```
 
-`> FFLAGS=*`
+`>> FFLAGS=*`
 
-`+ MAKEOPTS="-jY"`    
+`++ MAKEOPTS="-jY"`    
 
 ### Changing the mirrors
 ```
