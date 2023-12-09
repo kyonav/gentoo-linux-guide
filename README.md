@@ -78,7 +78,6 @@ mount /dev/sdX1 /mnt/boot/efi             # mounts the efi part to the efi dir
 ```
 
 ## Configuring the network
-<br/>
 
 ### Connecting to the internet (wireless)
 ```
@@ -88,7 +87,6 @@ dhcpcd CARD_NAME                                                          # sets
 ```
 
 ## Installing the Gentoo installation files
-<br/>
 
 ### Downloading and unpacking the stage tarball
 ```
@@ -97,7 +95,6 @@ links https://gentoo.org/downloads                                       # use l
 
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extracts the tarball
 ```
-<br/>
 
 ### Configuring compile options
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
@@ -180,7 +177,7 @@ nano /etc/portage/make.conf
 `> NOTE*`
 
 `+ USE=""` 
-<br>/
+<br>
 
 ### Optional: Configure the ACCEPT_LICENSE variable
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
@@ -197,8 +194,6 @@ nano /etc/portage/make.conf
 
 ### Timezone
 > OpenRC
-<br/>
-
 ```
 echo "Asia/Dubai" > /etc/timezone               # Asia/Dubai is just an example 
 emerge --config sys-libs/timezone-data          
@@ -206,8 +201,6 @@ emerge --config sys-libs/timezone-data
 
 ### Configure locales
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
-
 > Locale generation
 ```
 nano /etc/locale.gen
