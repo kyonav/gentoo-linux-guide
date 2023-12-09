@@ -74,7 +74,6 @@
 wipefs -a /dev/sdX 
 ```
 > Wipe everything on the disk
-<br/>
 
 ```
 parted -a optimal /dev/sdX
@@ -82,7 +81,6 @@ unit MiB
 mklabel gpt                                
 ```
 > Opens the disk on parted, changes the unit to MiB and creates a gpt partition label
-<br/>
 
 ```
 mkpart "EFI" ext4 1MiB 129MiB
@@ -103,6 +101,7 @@ Creates/ does ->
 > sets efi system partition on for /dev/sdX1
 
 > quits parted
+<br/>
 
 ### Creating filesystems 
 ```
@@ -514,12 +513,12 @@ EDITOR=nvim visudo
 
 ### Creating users
 ```
-useradd -m G wheel,users,video,audio,usb -s /bin/bash username
+useradd -m G wheel,users,video,audio,usb -s /bin/bash *your_username_goes_here*
 ```
-> change username to the name you want to use
+> Creates a user and add it to some groups
 <br/>
 
 ```
-passwd username
+passwd *your_username_goes_here*
 ```
-> changes the password for your user created on the previous step
+> Changes the password of your user
