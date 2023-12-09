@@ -32,6 +32,8 @@
 | **--**  | remove line    |
 | **-#**  | uncomment line |
 
+## Preparing the disks
+
 ### Partitioning the disks
 ```
 wipefs -a /dev/sdX                         # wipe the entire disk 
