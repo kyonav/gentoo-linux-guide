@@ -11,7 +11,8 @@
   * [Configuring the network](#configuring-the-network)
     * [Connecting to the internet (wireless)](#connecting-to-the-internet-wireless)
   * [Installing the Gentoo installation files](#installing-gentoo-installation-files)
-    * [Downloading the stage tarball](#downloading-the-stage-tarball)
+    * [Installing a stage tarball](#installing-a-stage-tarball)
+    * [Unpacking the stage tarball](#unpacking-the-stage-tarball)
     * [Configuring compile options](#configuring-compile-options)
   * [Installing the Gentoo base system](#installing-the-gentoo-base-system)
     * [Selecting Mirrors](#selecting-mirrors)
@@ -20,7 +21,7 @@
     * [Entering the new environment](#entering-the-new-environment)
 
 <p align="center">
-  <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu">
+  <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu.png">
 </p>
 
 ## Installation 
@@ -88,12 +89,17 @@ dhcpcd CARD_NAME                                                          # sets
 
 ## Installing the Gentoo installation files
 
-### Downloading and unpacking the stage tarball
+### Installing a stage tarball
+> Downloading the stage tarball
 ```
 cd /mnt/gentoo                                                           # cd into the mount point
 links https://gentoo.org/downloads                                       # use links tool to download amd64 stage3-openrc tarball
+```
+<br/>
 
-tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extracts the tarball
+> Unpacking the stage tarball
+```
+tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner 
 ```
 
 ### Configuring compile options
@@ -202,6 +208,7 @@ emerge --config sys-libs/timezone-data
 ### Configure locales
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
+
 > Locale generation
 ```
 nano /etc/locale.gen
@@ -243,7 +250,6 @@ emerge --ask sys-kernel/linux-firmware
 ```
 emerge --ask sys-firmware/intel-microcode
 ```
-<br/>
 
 ### Kernel configuration and compilation
 > Installing a distribution kernel (sadge)
@@ -275,6 +281,7 @@ make && make modules_install && make install
 ### Filesystem information
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
+
 > Creating the fstab file
 
 > For a EFI system
