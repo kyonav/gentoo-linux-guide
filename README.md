@@ -5,8 +5,9 @@
 * [Installation](#installation)
   * [Cheat sheet](#cheat-sheet)
   * [Preparing the disks](#preparing-the-disks)
-    * [Partitioning the disks](#partitioning-the-disks)
-    * [Formatting the disks](#formatting-the-disks)
+    * [Partitioning the disks with GPT for UEFI](#partitioning-the-disks-with-gpt-for-uefi)
+    * [Creating filesystems](#creating-filesystems)
+    * [Mounting the root partition](#mounting-the-root-partition)
     * [Mounting the parts](#mounting-the-parts)
   * [Configuring the network](#configuring-the-network)
     * [Connecting to the internet (wireless)](#connecting-to-the-internet-wireless)
@@ -30,13 +31,11 @@
 
 | Word        | Meaning    |
 | :---------- | :--------- |
-| **part**    | partition  |
-| **parts**   | partitions |
 | **dir**     | directory  |
 
-| Letter  | Equals      |
-| :-------| :---------- |
-| **X**   | part letter |
+| Letter  | Equals           |
+| :------ | :--------------- |
+| **X**   | partition letter |
 
 | Symbol  | Means          |
 | :------ | :------------- |
@@ -47,12 +46,14 @@
 
 ## Preparing the disks
 
-### Partitioning the disks
+### Partitioning the disks with GPT for UEFI
 ```
-wipefs -a /dev/sdX                         # wipe the entire disk 
+wipefs -a /dev/sdX 
+```
+> Wipe everything on the disk
 
 parted -a optimal /dev/sdX
-unit MiB 
+unit MiB
 mklabel gpt                                # creates a gpt part label
 mkpart "EFI" ext4 1MiB 129MiB              # creates a 128MiB efi part
 mkpart "rootfs" ext4 129MiB 70GiB          # creates a 70GiB rootfs part
@@ -62,16 +63,20 @@ set 1 esp                                  # sets part 1 to receive the esp
 quit
 ```
 
-### Formatting the disks 
+### Creating filesystems 
 ```
 mkfs.fat -F32 /dev/sdX1          # formats the efi part    
 mkfs.ext4 /dev/sdX2              # formats the rootfs part    
 mkfs.ext4 /dev/sdx3              # formats the home part    
 ```
 
-### Mounting the parts 
+### Mounting the root partition
 ```
 mount /dev/sdX2 /mnt/gentoo               # mounts the rootfs to the mount point
+```
+
+### Mounting the parts 
+```
 mkdir -p /mnt/gentoo/home                 # creates the home dir
 mount /dev/sdX3 /mnt/gentoo/home          # mounts the home part to the home dir
 mkdir -p /mnt/boot/efi                    # create the esp dir
