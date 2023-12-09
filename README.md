@@ -8,7 +8,11 @@
     * [Partitioning the disks](#partitioning-the-disks)
     * [Formatting the disks](#formatting-the-disks)
     * [Mounting the parts](#mounting-the-parts)
-  * [Downloading the stage tarball](#downloading-the-stage-tarball)
+  * [Wireless Networks](#wireless-networks)
+    * [Connecting to the internet](#connecting-to-the-internet)
+  * [Installing Gentoo installation files](#installing-gentoo-installation-files)
+    * [Downloading the stage tarball](#downloading-the-stage-tarball)
+    * [Configuring compile options](#configuring-compile-options)
 
 <p align="center">
   <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu">
@@ -68,20 +72,25 @@ mkdir -p /mnt/boot/efi                    # create the esp dir
 mount /dev/sdX1 /mnt/boot/efi             # mounts the efi part to the efi dir
 ```
 
-### Connecting to the internet (Wireless)
+## Wireless Networks
+
+### Connecting to the internet
 ```
 wpa_passphrase "ESSID" "PASSWORD" | tee /etc/wpa_supplicant.conf          # stores password on wpa conf
 wpa_supplicant -B -c /etc/wpa_supplicant.conf -i CARD_NAME                # use ipconfig to find out your card name
 dhcpcd CARD_NAME                                                          # sets an ip to your card
 ```
 
-### Downloading the stage tarball
+## Installing Gentoo installation files
+
+### Downloading and unpacking the stage tarball
 ```
 cd /mnt/gentoo                                                           # cd into the mount point
 links https://gentoo.org/downloads                                       # use links tool to download amd64 stage3-openrc tarball
 
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extracts the tarball
 ```
+## Configuring compile options
 
 ### Adding makeopts to the make.conf file
  
