@@ -228,8 +228,6 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ## Configuring the kernel
 
 ### Optional: Installing firmware and/or microcode
-<br/>
-
 > Firmware
 
 ```
@@ -244,8 +242,6 @@ emerge --ask sys-firmware/intel-microcode
 ```
 
 ### Kernel configuration and compilation
-<br/>
-
 > Installing a distribution kernel (sadge)
 
 ```
@@ -270,27 +266,33 @@ make menuconfig
 make && make modules_install && make install
 ```
 
-### Generating an fstab
-
+### Filesystem information
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
+
+> Creating the fstab file
+
+> For a EFI system
+
 ```
 nano /etc/fstab
 ```
 
-`+ /dev/sdX1        /boot/efi        fat32        defaults        0 2`
+`++ /dev/sdX1        /boot/efi        vfat        defaults        0 2`
 
-`+ /dev/sdX2        /                ext4         defaults        0 1`
+`++ /dev/sdX2        /                ext4         defaults,noatime        0 1`
 
-`+ /dev/sdX3        /home            ext4         defaults        0 1`
+`++ /dev/sdX3        /home            ext4         defaults,noatime        0 1`
 
 ### Changing the hostname and editing hosts 
-
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
+
 ```
 nano /etc/hostname
 ```
 
-`+ HOSTNAME` add a silly hostname
+`++ HOSTNAME` add a silly hostname
 
 ```
 nano /etc/hosts
