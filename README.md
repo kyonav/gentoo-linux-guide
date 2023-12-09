@@ -1,5 +1,6 @@
 ## gentoo linux install guide (gpt, efi, ext4, home part, amd64, stage3-openrc, manual kernel)
 
+
 ## Table of Contents
 * [Installation](#installation)
   * [Cheat sheet](#cheat-sheet)
@@ -210,6 +211,8 @@ nano /etc/fstab
 `+ /dev/sdX3        /home            ext4         defaults        0 1`
 
 ### Changing the hostname and editing hosts 
+
+> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 nano /etc/hostname
 ```
@@ -238,6 +241,8 @@ emerge -av sys-boot/grub                        # system bootloader
 ```
 
 ### Creating users and editing groups
+
+> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
 EDITOR=nvim visudo
 ```
@@ -260,10 +265,8 @@ useradd -m G wheel,users,video,audio,usb -s /bin/bash username
 passwd username
 # changes your user password, username being the same set in previous step
 ```
-
-### Installing the bootloader
-```
+### Installing the bootloader ```
 grub-install --target=x86_64-efi --target-directory=/boot/efi --bootloader-id=grub          # installs the bootloader using efi on the /boot/efi dir
 
-grub-mkconfig -o /boot/grub/grub.cfg          # configures the bootloader 
+grub-mkconfig -o /boot/grub/grub.cfg                                                        # configures the bootloader 
 ```
