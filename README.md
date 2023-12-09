@@ -10,8 +10,7 @@
     * [Mounting the parts](#mounting-the-parts)
   * [Downloading the stage tarball](#downloading-the-stage-tarball)
 
-## Installation 
-
+# Installation 
 
 ### Cheat sheet
 
