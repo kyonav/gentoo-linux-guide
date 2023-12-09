@@ -8,7 +8,7 @@
     * [Partitioning the disks](#partitioning-the-disks)
     * [Formatting the disks](#formatting-the-disks)
     * [Mounting the parts](#mounting-the-parts)
-  * [Wireless Networks](#wireless-networks)
+  * [Configuring the network (wireless)](#configuring-the-network-(wireless))
     * [Connecting to the internet](#connecting-to-the-internet)
   * [Installing Gentoo installation files](#installing-gentoo-installation-files)
     * [Downloading the stage tarball](#downloading-the-stage-tarball)
@@ -72,7 +72,7 @@ mkdir -p /mnt/boot/efi                    # create the esp dir
 mount /dev/sdX1 /mnt/boot/efi             # mounts the efi part to the efi dir
 ```
 
-## Wireless Networks
+## Configuring the network (wireless)
 
 ### Connecting to the internet
 ```
