@@ -88,7 +88,7 @@ mkfs.fat -F32 /dev/sdX1
 mkfs.ext4 /dev/sdX2             
 mkfs.ext4 /dev/sdx3            
 ```
-> Formats ->
+Formats ->
 
 > /dev/sdX1 to vfat(fat32)
 
@@ -98,16 +98,20 @@ mkfs.ext4 /dev/sdx3
 
 ### Mounting the root partition
 ```
-mount /dev/sdX2 /mnt/gentoo               # mounts the rootfs to the mount point
+mount /dev/sdX2 /mnt/gentoo      
 ```
+> mounts the rootfs partition to the mount point /mnt/gentoo
 
-### Mounting the parts 
+### Mounting the partitions
 ```
-mkdir -p /mnt/gentoo/home                 # creates the home dir
-mount /dev/sdX3 /mnt/gentoo/home          # mounts the home part to the home dir
-mkdir -p /mnt/boot/efi                    # create the esp dir
-mount /dev/sdX1 /mnt/boot/efi             # mounts the efi part to the efi dir
+mkdir -p /mnt/gentoo/home                
+mount /dev/sdX3 /mnt/gentoo/home          
+mkdir -p /mnt/boot/efi      
+mount /dev/sdX1 /mnt/boot/efi
 ```
+Creates then mounts the ->
+> /home directory
+> /boot/efi directory
 
 ## Configuring the network
 
