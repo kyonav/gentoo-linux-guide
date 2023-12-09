@@ -43,7 +43,9 @@
 ## Preparing the disks
 
 ### Partitioning the disks with GPT for UEFI
-> ??? placebo
+> [Cheat/ Letter](https://github.com/kyonav/gentoo-linux-guide/blob/3d1040750d7400e389b69f4a7de147371c0bf915/README.md#L34)
+<br/>
+
 ```
 wipefs -a /dev/sdX 
 ```
