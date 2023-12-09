@@ -200,9 +200,9 @@ emerge --config sys-libs/timezone-data
 ```
 
 ### Configure locales
-> Locale generation
-
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
+> Locale generation
 ```
 nano /etc/locale.gen
 ```
@@ -231,8 +231,6 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ## Configuring the kernel
 
 ### Optional: Installing firmware and/or microcode
-<br/>
-
 > Firmware
 
 ```
@@ -248,8 +246,6 @@ emerge --ask sys-firmware/intel-microcode
 <br/>
 
 ### Kernel configuration and compilation
-<br/>
-
 > Installing a distribution kernel (sadge)
 
 ```
@@ -257,8 +253,6 @@ sys-kernel/gentoo-kernel-bin
 ```
 
 ### Installing the kernel sources
-<br/>
-
 > Not necessary if installed a distribution kernel
 
 ```
@@ -280,9 +274,8 @@ make && make modules_install && make install
 
 ### Filesystem information
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-
-> Creating the fstab file
 <br/>
+> Creating the fstab file
 
 > For a EFI system
 
@@ -307,6 +300,7 @@ nano /etc/fstab
 ```
 echo HOSTNAME > /etc/hostname
 ```
+<br/>
 
 > Network
 
@@ -324,13 +318,10 @@ rc-service dhcpcd start
 <br/>
 
 > Configuring the network
-```
-emerge --ask --noreplace net-misc/netifrc
-```
-<br>
 
 > DHCP definition
 ```
+emerge --ask --noreplace net-misc/netifrc
 nano /etc/conf.d/net
 ```
 
@@ -339,7 +330,7 @@ nano /etc/conf.d/net
 `++ config_CARD-NAME="dhcp"`
 
 Use ipconfig to find out your CARD-NAME
-<br/>
+<br/><br/>
 
 > Automatically start networking at boot
 ```
@@ -363,6 +354,7 @@ nano /etc/hosts
 HOSTNAME being the hostname you set on /etc/hostname
 
 ### System information
+<br/>
 
 > Root password
 ```
@@ -388,8 +380,6 @@ rc -update add sysklogd default
 ```
 
 ### Networking tools
-<br/>
-
 > Optional: install wireless networking tools
 ```
 emerge --ask net-wireless/wpa_supplicant
