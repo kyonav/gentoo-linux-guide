@@ -57,33 +57,44 @@ wipefs -a /dev/sdX
 ```
 parted -a optimal /dev/sdX
 unit MiB
-mklabel gpt                                # creates a gpt part label
+mklabel gpt                                
 ```
 > Opens the disk on parted, changes the unit to MiB and creates a gpt partition label
 <br/>
 
 ```
-mkpart "EFI" ext4 1MiB 129MiB              # creates a 128MiB efi part
-mkpart "rootfs" ext4 129MiB 70GiB          # creates a 70GiB rootfs part
-mkpart "home" ext4 70GiB 100%              # uses remaining disk to create a home part 
-set 1 esp                                  # sets part 1 to receive the esp
+mkpart "EFI" ext4 1MiB 129MiB
+mkpart "rootfs" ext4 129MiB 70GiB
+mkpart "home" ext4 70GiB 100%   
+set 1 esp                      
 
 quit
 ```
-> Creates:
+Creates/ does ->
 
-> /dev/sdX1 partition labeled "EFI" using vfat(fat32) filesystem with 128MiB of size,
+> /dev/sdX1 partition labeled "EFI" using vfat(fat32) filesystem with 128MiB of size
 
-> /dev/sdX2 partition labeled "rootfs" using ext4 filesystem with 70GiB of size and
+> /dev/sdX2 partition labeled "rootfs" using ext4 filesystem with 70GiB of size
 
 > /dev/sdX3 partition labeled "home" using ext4 filesystem with remaining available disk for size
 
+> sets efi system partition on for /dev/sdX1
+
+> quits parted
+
 ### Creating filesystems 
 ```
-mkfs.fat -F32 /dev/sdX1          # formats the efi part    
-mkfs.ext4 /dev/sdX2              # formats the rootfs part    
-mkfs.ext4 /dev/sdx3              # formats the home part    
+mkfs.fat -F32 /dev/sdX1          
+mkfs.ext4 /dev/sdX2             
+mkfs.ext4 /dev/sdx3            
 ```
+> Formats ->
+
+> /dev/sdX1 to vfat(fat32)
+
+> /dev/sdX2 to ext4 file system
+
+> /dev/sdX3 to ext4 file system
 
 ### Mounting the root partition
 ```
