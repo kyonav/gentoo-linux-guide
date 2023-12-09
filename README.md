@@ -31,7 +31,7 @@
   * [Configuring the kernel](#configuring-the-kernel)
     * [Kernel configuration and compilation](#kernel-configuration-and-compilation)
     * [Installing the kernel sources](#installing-the-kernel-sources)
-    * [Alternative: Manual configuration](#alternative:-manual-configuration)
+    * [Alternative: Manual configuration]("#alternative: manual-configuration")
 
 <p align="center">
   <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu.png">
