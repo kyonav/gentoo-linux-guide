@@ -268,9 +268,8 @@ make && make modules_install && make install
 
 ### Filesystem information
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
-
 > Creating the fstab file
+<br/>
 
 > For a EFI system
 
@@ -284,32 +283,157 @@ nano /etc/fstab
 
 `++ /dev/sdX3        /home            ext4         defaults,noatime        0 1`
 
-### Changing the hostname and editing hosts 
+### Networking information 
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
 
+> hostname
+> Set the hostname (OpenRC or systemd)
+
 ```
-nano /etc/hostname
+echo HOSTNAME > /etc/hostname
 ```
 
-`++ HOSTNAME` add a silly hostname
+> Network
+<br/>
 
+> DHCP via dhcpcd (any init system)
+```
+emerge --ask net-misc/dhcpcd
+```
+<br/>
+
+> To enable and then start the service on OpenRC systems:
+```
+rc-update add dhcpcd default
+rc-service dhcpcd start
+```
+<br/>
+
+> Configuring the network
+```
+emerge --ask --noreplace net-misc/netifrc
+```
+<br>/
+
+> DHCP definition
+```
+nano /etc/conf.d/net
+```
+
+`-- config_eth0=*`
+`++ config_CARD-NAME="dhcp"`
+
+Use ipconfig to find out your CARD-NAME
+<br/>
+
+> Automatically start networking at boot
+```
+cd /etc/init.d
+ln -s net.lo net.CARD-NAME
+rc-update add net.CARD-name default
+```
+<br/>
+
+> The hosts file
 ```
 nano /etc/hosts
 ```
 
-`> IPv4 and IPv6*`    
+`>> IPv4 and IPv6*`    
 
-`- 127.0.0.1    localhost`
+`-- 127.0.0.1    localhost`
 
-`+ 127.0.0.1    HOSTNAME.homenetwork    HOSTNAME    localhost`
+`++ 127.0.0.1    HOSTNAME.homenetwork    HOSTNAME    localhost`
 
 HOSTNAME being the hostname you set on /etc/hostname
+
+### System information
+
+> Root password
+```
+passwd
+```
+<br/>
+
+> Init and boot configuration
+<br/>
+
+> OpenRC
+```
+nano /etc/conf.d/keymaps
+```
+`???`
+
+## Installing system tools
+
+### System logger
+
+> OpenRC
+```
+emerge --ask app-admin/sysklogd
+rc -update add sysklogd default
+```
+
+### Networking tools
+<br/>
+
+> Optional: install wireless networking tools
+```
+emerge --ask net-wireless/wpa_supplicant
+```
+## Configuring the bootloader
+
+### Selecting a bootloader
+
+> Default: GRUB
+> Emerge
+```
+echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+emerge --ask --verbose sys-boot/grub
+```
+<br/>
+
+> Install
+> EFI Systems
+```
+grub-install --target=x86_64-efi --efi-directory=/path/to/esp --bootloader-id=anybootloadername
+# --efi-directory is the one created in the partitioning the disks section
+```
+<br/>
+
+> Configure
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### Rebooting the system
+```
+exit
+```
+
+```
+cd
+umount -l /mnt/gentoo/dev/{/shm,/pts,}
+umount -R /mnt/gentoo
+reboot
+```
+
+:)
+
+
+
+
+
+
+
+
+
+
 
 ### Necessary tools
 ```
 emerge -av net-wireless/wpa_supplicant          # wireless connections management
-emerge -av net-misc/dhcpcd                      # network card ip configuration
 emerge -av app-admin/sudo                       # user root privileges
 emerge -av app-editors/neovim                   # preferred text editor
 emerge -av sys-boot/grub                        # system bootloader
@@ -325,11 +449,6 @@ EDITOR=nvim visudo
 `> Uncomment to allow members of group wheel*`
 
 `# #%wheel ALL=(ALL) ALL` 
-
-```
-passwd root
-# changes the root password
-```
 
 ```
 useradd -m G wheel,users,video,audio,usb -s /bin/bash username
