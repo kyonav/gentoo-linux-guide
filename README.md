@@ -17,6 +17,7 @@
     * [Selecting Mirrors](#selecting-mirrors)
     * [Copy DNS info](#copy-dns-info)
     * [Mounting the necessary fileystems](#mounting-the-necessary-filesystems)
+    * [Entering the new environment](#entering-the-new-environment)
 
 <p align="center">
   <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu">
@@ -134,28 +135,38 @@ mount --bind /run /mnt/gentoo/run
 mount --make-slave /mnt/gentoo/run
 ```
 
-### Chrooting into the filesystem
+### Entering the new environment
+
 ```
 chroot /mnt/gentoo                        # chroot into the filesystem
 source /etc/profile                       # sources the shell profile                       
 export PS1="(chroot UwU) ${PS1}"          # changes the terminal style
 ```
+### Configuring portage
 
-### Synchronizing the repositories
+### Installing a Gentoo ebuild repository snapshot from the web
 ```
 emerge-webrsync
 ```
 
-### Reading news items and changing the profile
+### Reading news items
 ```
 eselect news list
 eselect news read NUMBER            # reads the selected news
+´´´
 
+### Choosing the right profile
+´´´
 eselect profile list
 eselect profile set NUMBER          # selects the desired profile (standard for minimal)
 ```
 
-### Changing USE flags
+### Updating the @world set 
+```
+emerge --ask --verbose --update --deep --newuse @world
+```
+
+### Configuring the USE variable
 
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
@@ -166,12 +177,7 @@ nano /etc/portage/make.conf
 
 `+ USE=""` 
 
-### Update the @world packages
-```
-emerge --ask --verbose --update --deep --newuse @world
-```
-
-### Configuring the ACCEPT_LICENSE variable
+### Optional: Configure the ACCEPT_LICENSE variable
 
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
@@ -182,13 +188,16 @@ nano /etc/portage/make.conf
 
 `+ ACCEPT_LICENSE="*"`   
 
-### Changing the timezone
+### Timezone
+
+### OpenRC
 ```
 echo "Asia/Dubai" > /etc/timezone               # Asia/Dubai is just an example 
 emerge --config sys-libs/timezone-data          
 ```
 
-### Generating the locale
+### Configure locales
+### Locale Generation
 
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
@@ -199,6 +208,9 @@ nano /etc/locale.gen
 
 ```
 locale-gen
+
+### Locale selection
+
 eselect locale list
 eselect locale set NUMBER
 ```
