@@ -265,8 +265,12 @@ useradd -m G wheel,users,video,audio,usb -s /bin/bash username
 passwd username
 # changes your user password, username being the same set in previous step
 ```
-### Installing the bootloader ```
-grub-install --target=x86_64-efi --target-directory=/boot/efi --bootloader-id=grub          # installs the bootloader using efi on the /boot/efi dir
 
-grub-mkconfig -o /boot/grub/grub.cfg                                                        # configures the bootloader 
+### Installing the bootloader
+```
+grub-install --target=x86_64-efi --target-directory=/boot/efi --bootloader-id=grub
+# installs the bootloader using efi on the /boot/efi dir
+
+grub-mkconfig -o /boot/grub/grub.cfg    
+# configures the bootloader 
 ```
