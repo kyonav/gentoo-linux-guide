@@ -1,7 +1,7 @@
 ## gentoo linux install guide (gpt, efi, ext4, home part, amd64, stage3-openrc, manual kernel)
 
 
-# Table of Contents
+## Table of Contents
 * [Installation](#installation)
   * [Cheat sheet](#cheat-sheet)
   * [Preparing the disks](#preparing-the-disks)
@@ -9,6 +9,10 @@
     * [Formatting the disks](#formatting-the-disks)
     * [Mounting the parts](#mounting-the-parts)
   * [Downloading the stage tarball](#downloading-the-stage-tarball)
+
+<p align="center">
+  <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu">
+</p>
 
 ## Installation 
 
