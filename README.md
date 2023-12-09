@@ -95,9 +95,9 @@ links https://gentoo.org/downloads                                       # use l
 
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extracts the tarball
 ```
-## Configuring compile options
+### Configuring compile options
 
-### Adding makeopts to the make.conf file
+> Adding makeopts to the make.conf file
  
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
@@ -190,14 +190,14 @@ nano /etc/portage/make.conf
 
 ### Timezone
 
-### OpenRC
+> OpenRC
 ```
 echo "Asia/Dubai" > /etc/timezone               # Asia/Dubai is just an example 
 emerge --config sys-libs/timezone-data          
 ```
 
 ### Configure locales
-### Locale Generation
+> Locale Generation
 
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 ```
