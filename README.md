@@ -20,6 +20,18 @@
     * [Copy DNS info](#copy-dns-info)
     * [Mounting the necessary fileystems](#mounting-the-necessary-filesystems)
     * [Entering the new environment](#entering-the-new-environment)
+    * [Configuring portage](#configuring-portage)
+    * [Reading news items](#reading-news-items)
+    * [Choosing the right profile](#choosing-the-right-profile)
+    * [Updating the @world set](#updating-the-@world-set)
+    * [Configuring the USE variable](#configuring-the-use-variable)
+    * [Timezone](#timezone)
+    * [Configure locales](#configure-locales)
+    * [Reloading the environment](#reloading-the-environment)
+  * [Configuring the kernel](#configuring-the-kernel)
+    * [Kernel configuration and compilation](#kernel-configuration-and-compilation)
+    * [Installing the kernel sources](#installing-the-kernel-sources)
+    * [Alternative: Manual configuration](#alternative:-manual-configuration)
 
 <p align="center">
   <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu.png">
