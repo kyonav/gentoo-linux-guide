@@ -12,10 +12,11 @@
 
 ### Cheat sheet
 
-| Word        | Meaning      |
-| :---------- | :----------- |
-| **part(s)** | partition(s) |
-| **dir**     | directory    |
+| Word        | Meaning    |
+| :---------- | :--------- |
+| **part**    | partition  |
+| **parts**   | partitions |
+| **dir**     | directory  |
 
 | Letter  | Equals      |
 | :-------| :---------- |
