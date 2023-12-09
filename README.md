@@ -70,8 +70,12 @@ set 1 esp                                  # sets part 1 to receive the esp
 
 quit
 ```
-> Creates /dev/sdX1 partition labeled "EFI" using vfat(fat32) filesystem with 128MiB of size,
+> Creates:
+
+> /dev/sdX1 partition labeled "EFI" using vfat(fat32) filesystem with 128MiB of size,
+
 > /dev/sdX2 partition labeled "rootfs" using ext4 filesystem with 70GiB of size and
+
 > /dev/sdX3 partition labeled "home" using ext4 filesystem with remaining available disk for size
 
 ### Creating filesystems 
