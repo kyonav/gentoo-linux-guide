@@ -210,6 +210,7 @@ nano /etc/locale.gen
 locale-gen
 ```
 
+<br/>
 > Locale selection
 
 ```
