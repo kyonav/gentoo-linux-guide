@@ -182,14 +182,15 @@ eselect locale set NUMBER
 env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ```
 
-### Compiling the kernel
+## Installing the kernel
 
-### Pre compiled kernel (sadge)
+### Kernel binaries (sadge)
 ```
 emerge --ask sys-kernel/gentoo-sources sys-kernel/gentoo-kernel-bin sys-kernel/linux-firmware
 ```
 
-### Manual kernel (chadding)
+> Optional step
+### Kernel manual compiling (chadding)
 ```
 emerge --ask sys-kernel/gentoo-sources sys-kernel/linux-firmware          
 cd /usr/src/linux*
