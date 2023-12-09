@@ -87,7 +87,8 @@ nano /mnt/gentoo/etc/portage/make.conf
 
 ### Changing the mirrors
 ```
-mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf          # select the preferred mirror
+mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf          
+# select the preferred mirror
 ```
 
 ### Copying the DNS info
