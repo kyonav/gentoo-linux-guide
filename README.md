@@ -29,10 +29,6 @@
 
 ### Cheat sheet
 
-| Word        | Meaning    |
-| :---------- | :--------- |
-| **dir**     | directory  |
-
 | Letter  | Equals           |
 | :------ | :--------------- |
 | **X**   | partition letter |
@@ -111,6 +107,7 @@ mount /dev/sdX1 /mnt/boot/efi
 ```
 Creates then mounts the ->
 > /home directory
+
 > /boot/efi directory
 
 ## Configuring the network
