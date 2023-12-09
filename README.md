@@ -197,9 +197,10 @@ emerge --config sys-libs/timezone-data
 ```
 
 ### Configure locales
-> Locale Generation
-
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
+
+> Locale generation
 ```
 nano /etc/locale.gen
 ```
@@ -224,20 +225,45 @@ eselect locale set NUMBER
 env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ```
 
-## Installing the kernel
+## Configuring the kernel
 
-### Kernel binaries (sadge)
-```
-emerge --ask sys-kernel/gentoo-sources sys-kernel/gentoo-kernel-bin sys-kernel/linux-firmware
-```
+### Optional: Installing firmware and/or microcode
+<br/>
 
-### Kernel manual compiling (chadding)
-> Not necessary if installed kernel binaries
+> Firmware
 
 ```
-emerge --ask sys-kernel/gentoo-sources sys-kernel/linux-firmware          
+emerge --ask sys-kernel/linux-firmware
+```
+<br/>
+
+> Microcode (Intel)
+
+```
+emerge --ask sys-firmware/intel-microcode
+```
+
+### Kernel configuration and compilation
+<br/>
+
+> Installing a distribution kernel (sadge)
+
+```
+sys-kernel/gentoo-kernel-bin 
+```
+
+### Installing the kernel sources
+> Not necessary if installed a distribution kernel
+
+```
+emerge --ask sys-kernel/gentoo-sources          
+```
+### Alternative: Manual configuration
+
+``` 
+emerge --ask sys-apps/pciutils
 cd /usr/src/linux*
-make menuconfig                                 
+make menuconfig
 ```
 
 ```
