@@ -67,7 +67,7 @@
 ## Preparing the disks
 
 ### Partitioning the disks with GPT for UEFI
-> [Cheat/ Letter](https://github.com/kyonav/gentoo-linux-guide/blob/3d1040750d7400e389b69f4a7de147371c0bf915/README.md#L34)
+[Cheat/ Letter](https://github.com/kyonav/gentoo-linux-guide/blob/3d1040750d7400e389b69f4a7de147371c0bf915/README.md#L34)
 <br/>
 
 ```
@@ -101,7 +101,6 @@ Creates/ does ->
 > sets efi system partition on for /dev/sdX1
 
 > quits parted
-<br/>
 
 ### Creating filesystems 
 ```
