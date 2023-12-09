@@ -31,7 +31,16 @@
   * [Configuring the kernel](#configuring-the-kernel)
     * [Kernel configuration and compilation](#kernel-configuration-and-compilation)
     * [Installing the kernel sources](#installing-the-kernel-sources)
-    * [Alternative: Manual configuration]("#alternative: manual-configuration")
+    * [Manual configuration](#manual-configuration)
+    * [Filesystem information](#filesystem-information)
+    * [Networking information](#networking-information)
+    * [System information](#system-information)
+  * [Installing system tools](#installing-system-tools)
+    * [System logger](#system-logger)
+    * [Networking tools](#networking-tools)
+  * [Configuring the bootloader](#configuring-the-bootloader)
+    * [Selecting a bootloader](#selecting-a-bootloader)
+    * [Rebooting the system](#rebooting-the-system)
 
 <p align="center">
   <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu.png">
@@ -305,14 +314,15 @@ sys-kernel/gentoo-kernel-bin
 ```
 
 ### Installing the kernel sources
-> Not necessary if installed a distribution kernel
+> Only needed if installing genkernel or manually compiling
 
 ```
 emerge --ask sys-kernel/gentoo-sources          
 ```
 <br/>
 
-### Alternative: Manual configuration
+### Manual configuration
+> Alternative step (chadding)
 
 ``` 
 emerge --ask sys-apps/pciutils
@@ -476,14 +486,20 @@ reboot
 
 :)
 
-## Post reboot configurations
+## Post reboot setup
 ```
-emerge -av app-admin/sudo                       # user root privileges
-emerge -av app-editors/neovim                   # preferred text editor
+emerge -av app-admin/sudo                      
 ```
+> User root privileges
+
+```
+emerge -av app-editors/neovim                   
+```
+> Preferred text editor
 
 ### Creating users and editing groups
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
 
 ```
 EDITOR=nvim visudo
@@ -492,22 +508,15 @@ EDITOR=nvim visudo
 `>> Uncomment to allow members of group wheel*`
 
 `-# #%wheel ALL=(ALL) ALL` 
+<br/>
 
 ```
 useradd -m G wheel,users,video,audio,usb -s /bin/bash username
-# change username to your desired user username
 ```
+> change username to the name you want to use
+<br/>
 
 ```
 passwd username
-# changes your user password, username being the same set in previous step
 ```
-
-### Installing the bootloader
-```
-grub-install --target=x86_64-efi --target-directory=/boot/efi --bootloader-id=grub
-# installs the bootloader using efi on the /boot/efi dir
-
-grub-mkconfig -o /boot/grub/grub.cfg    
-# configures the bootloader 
-```
+> changes the password for your user created on the previous step
