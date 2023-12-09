@@ -4,7 +4,10 @@
 ## Table of Contents
 * [Installation](#installation)
   * [Cheat sheet](#cheat-sheet)
-  * [Partitioning the disks](#partitioning-the-disks)
+  * [Preparing the disks](#preparing-the-disks)
+    * [Partitioning the disks](#partitioning-the-disks)
+    * [Formatting the disks](#formatting-the-disks)
+    * [Mounting the parts](#mounting-the-parts)
   * [Downloading the stage tarball](#downloading-the-stage-tarball)
 
 ## Installation 
