@@ -78,6 +78,7 @@ mount /dev/sdX1 /mnt/boot/efi             # mounts the efi part to the efi dir
 ```
 
 ## Configuring the network
+<br/>
 
 ### Connecting to the internet (wireless)
 ```
@@ -87,6 +88,7 @@ dhcpcd CARD_NAME                                                          # sets
 ```
 
 ## Installing the Gentoo installation files
+<br/>
 
 ### Downloading and unpacking the stage tarball
 ```
@@ -95,11 +97,12 @@ links https://gentoo.org/downloads                                       # use l
 
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner          # extracts the tarball
 ```
-### Configuring compile options
+<br/>
 
-> Adding makeopts to the make.conf file
- 
+### Configuring compile options
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
+
 ```
 nano /mnt/gentoo/etc/portage/make.conf
 ```
@@ -167,8 +170,9 @@ emerge --ask --verbose --update --deep --newuse @world
 ```
 
 ### Configuring the USE variable
-
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
+
 ```
 nano /etc/portage/make.conf
 ```
@@ -176,10 +180,12 @@ nano /etc/portage/make.conf
 `> NOTE*`
 
 `+ USE=""` 
+<br>/
 
 ### Optional: Configure the ACCEPT_LICENSE variable
-
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+<br/>
+
 ```
 nano /etc/portage/make.conf
 ```
@@ -187,9 +193,11 @@ nano /etc/portage/make.conf
 `> USE*`
 
 `+ ACCEPT_LICENSE="*"`   
+<br/>
 
 ### Timezone
 > OpenRC
+<br/>
 
 ```
 echo "Asia/Dubai" > /etc/timezone               # Asia/Dubai is just an example 
@@ -205,7 +213,8 @@ emerge --config sys-libs/timezone-data
 nano /etc/locale.gen
 ```
 
-`# #en_US.UTF-8 UTF-8`     
+`-# #en_US.UTF-8 UTF-8`     
+<br/>
 
 ```
 locale-gen
@@ -228,6 +237,8 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ## Configuring the kernel
 
 ### Optional: Installing firmware and/or microcode
+<br/>
+
 > Firmware
 
 ```
@@ -240,8 +251,11 @@ emerge --ask sys-kernel/linux-firmware
 ```
 emerge --ask sys-firmware/intel-microcode
 ```
+<br/>
 
 ### Kernel configuration and compilation
+<br/>
+
 > Installing a distribution kernel (sadge)
 
 ```
@@ -249,11 +263,15 @@ sys-kernel/gentoo-kernel-bin
 ```
 
 ### Installing the kernel sources
+<br/>
+
 > Not necessary if installed a distribution kernel
 
 ```
 emerge --ask sys-kernel/gentoo-sources          
 ```
+<br/>
+
 ### Alternative: Manual configuration
 
 ``` 
@@ -268,6 +286,7 @@ make && make modules_install && make install
 
 ### Filesystem information
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+
 > Creating the fstab file
 <br/>
 
@@ -288,6 +307,7 @@ nano /etc/fstab
 <br/>
 
 > hostname
+
 > Set the hostname (OpenRC or systemd)
 
 ```
@@ -295,7 +315,6 @@ echo HOSTNAME > /etc/hostname
 ```
 
 > Network
-<br/>
 
 > DHCP via dhcpcd (any init system)
 ```
@@ -314,7 +333,7 @@ rc-service dhcpcd start
 ```
 emerge --ask --noreplace net-misc/netifrc
 ```
-<br>/
+<br>
 
 > DHCP definition
 ```
@@ -322,6 +341,7 @@ nano /etc/conf.d/net
 ```
 
 `-- config_eth0=*`
+
 `++ config_CARD-NAME="dhcp"`
 
 Use ipconfig to find out your CARD-NAME
@@ -357,8 +377,6 @@ passwd
 <br/>
 
 > Init and boot configuration
-<br/>
-
 > OpenRC
 ```
 nano /etc/conf.d/keymaps
