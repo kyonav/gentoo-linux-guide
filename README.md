@@ -153,10 +153,10 @@ emerge-webrsync
 ```
 eselect news list
 eselect news read NUMBER            # reads the selected news
-´´´
+```
 
 ### Choosing the right profile
-´´´
+```
 eselect profile list
 eselect profile set NUMBER          # selects the desired profile (standard for minimal)
 ```
