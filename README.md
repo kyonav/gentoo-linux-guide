@@ -47,10 +47,12 @@
 ## Preparing the disks
 
 ### Partitioning the disks with GPT for UEFI
+> ??? placebo
 ```
 wipefs -a /dev/sdX 
 ```
 > Wipe everything on the disk
+<br/>
 
 ```
 parted -a optimal /dev/sdX
@@ -58,6 +60,7 @@ unit MiB
 mklabel gpt                                # creates a gpt part label
 ```
 > Opens the disk on parted, changes the unit to MiB and creates a gpt partition label
+<br/>
 
 ```
 mkpart "EFI" ext4 1MiB 129MiB              # creates a 128MiB efi part
@@ -67,6 +70,9 @@ set 1 esp                                  # sets part 1 to receive the esp
 
 quit
 ```
+> Creates /dev/sdX1 partition labeled "EFI" using vfat(fat32) filesystem with 128MiB of size,
+> /dev/sdX2 partition labeled "rootfs" using ext4 filesystem with 70GiB of size and
+> /dev/sdX3 partition labeled "home" using ext4 filesystem with remaining available disk for size
 
 ### Creating filesystems 
 ```
