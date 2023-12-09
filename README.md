@@ -41,6 +41,9 @@
   * [Configuring the bootloader](#configuring-the-bootloader)
     * [Selecting a bootloader](#selecting-a-bootloader)
     * [Rebooting the system](#rebooting-the-system)
+  * [Post reboot setup](#post-reboot-setup)
+    * [Editing groups](#editing-groups)
+    * [Creating users](#creating-users)
 
 <p align="center">
   <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu.png">
@@ -497,7 +500,7 @@ emerge -av app-editors/neovim
 ```
 > Preferred text editor
 
-### Creating users and editing groups
+### Editing groups
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
 
@@ -508,8 +511,8 @@ EDITOR=nvim visudo
 `>> Uncomment to allow members of group wheel*`
 
 `-# #%wheel ALL=(ALL) ALL` 
-<br/>
 
+### Creating users
 ```
 useradd -m G wheel,users,video,audio,usb -s /bin/bash username
 ```
