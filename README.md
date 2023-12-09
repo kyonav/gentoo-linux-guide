@@ -225,6 +225,7 @@ nano /etc/hosts
 `- 127.0.0.1    localhost`
 
 `+ 127.0.0.1    HOSTNAME.homenetwork    HOSTNAME    localhost`
+
 HOSTNAME being the hostname you set on /etc/hostname
 
 ### Necessary tools
@@ -234,26 +235,35 @@ emerge -av net-misc/dhcpcd                      # network card ip configuration
 emerge -av app-admin/sudo                       # user root privileges
 emerge -av app-editors/neovim                   # preferred text editor
 emerge -av sys-boot/grub                        # system bootloader
-
 ```
 
 ### Creating users and editing groups
 ```
 EDITOR=nvim visudo
-->
+```
 
-Uncomment to allow members of group wheel*
-%wheel ALL=(ALL) ALL    -- uncomment this line
+`> Uncomment to allow members of group wheel*`
 
+`# #%wheel ALL=(ALL) ALL` 
 
-passwd    -- changes the root password
+```
+passwd root
+# changes the root password
+```
+
+```
 useradd -m G wheel,users,video,audio,usb -s /bin/bash username
-passwd username    -- changes the user password
+# change username to your desired user username
+```
+
+```
+passwd username
+# changes your user password, username being the same set in previous step
 ```
 
 ### Installing the bootloader
 ```
-grub-install --target=x86_64-efi --target-directory=/boot/efi --bootloader-id=grub
+grub-install --target=x86_64-efi --target-directory=/boot/efi --bootloader-id=grub          # installs the bootloader using efi on the /boot/efi dir
 
-grub-mkconfig -o /boot/grub/grub.cfg 
+grub-mkconfig -o /boot/grub/grub.cfg          # configures the bootloader 
 ```
