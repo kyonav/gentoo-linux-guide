@@ -3,7 +3,7 @@
 
 ## Table of Contents
 * [Installation](#installation)
-* [Cheat sheet](#cheat-sheet)
+  * [Cheat sheet](#cheat-sheet)
   * [Preparing the disks](#preparing-the-disks)
     * [Partitioning the disks](#partitioning-the-disks)
     * [Formatting the disks](#formatting-the-disks)
