@@ -144,7 +144,7 @@ export PS1="(chroot UwU) ${PS1}"          # changes the terminal style
 ```
 ### Configuring portage
 
-### Installing a Gentoo ebuild repository snapshot from the web
+> Installing a Gentoo ebuild repository snapshot from the web
 ```
 emerge-webrsync
 ```
