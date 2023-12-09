@@ -421,34 +421,22 @@ reboot
 
 :)
 
-
-
-
-
-
-
-
-
-
-
-### Necessary tools
+## Post reboot configurations
 ```
-emerge -av net-wireless/wpa_supplicant          # wireless connections management
 emerge -av app-admin/sudo                       # user root privileges
 emerge -av app-editors/neovim                   # preferred text editor
-emerge -av sys-boot/grub                        # system bootloader
 ```
 
 ### Creating users and editing groups
-
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+
 ```
 EDITOR=nvim visudo
 ```
 
-`> Uncomment to allow members of group wheel*`
+`>> Uncomment to allow members of group wheel*`
 
-`# #%wheel ALL=(ALL) ALL` 
+`-# #%wheel ALL=(ALL) ALL` 
 
 ```
 useradd -m G wheel,users,video,audio,usb -s /bin/bash username
