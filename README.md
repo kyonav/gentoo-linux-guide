@@ -52,9 +52,14 @@ wipefs -a /dev/sdX
 ```
 > Wipe everything on the disk
 
+```
 parted -a optimal /dev/sdX
 unit MiB
 mklabel gpt                                # creates a gpt part label
+```
+> Opens the disk on parted, changes the unit to MiB and creates a gpt partition label
+
+```
 mkpart "EFI" ext4 1MiB 129MiB              # creates a 128MiB efi part
 mkpart "rootfs" ext4 129MiB 70GiB          # creates a 70GiB rootfs part
 mkpart "home" ext4 70GiB 100%              # uses remaining disk to create a home part 
