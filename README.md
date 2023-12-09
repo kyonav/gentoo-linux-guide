@@ -189,8 +189,7 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 emerge --ask sys-kernel/gentoo-sources sys-kernel/gentoo-kernel-bin sys-kernel/linux-firmware
 ```
 
-> Optional step
-### Kernel manual compiling (chadding)
+### Kernel manual compiling (chadding) ### > Optional step
 ```
 emerge --ask sys-kernel/gentoo-sources sys-kernel/linux-firmware          
 cd /usr/src/linux*
