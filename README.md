@@ -201,6 +201,7 @@ emerge --config sys-libs/timezone-data
 
 ### Configure locales
 > [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+
 > Locale generation
 ```
 nano /etc/locale.gen
