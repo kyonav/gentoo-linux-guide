@@ -8,11 +8,15 @@
     * [Partitioning the disks](#partitioning-the-disks)
     * [Formatting the disks](#formatting-the-disks)
     * [Mounting the parts](#mounting-the-parts)
-  * [Configuring the network (wireless)](#configuring-the-network-(wireless))
-    * [Connecting to the internet](#connecting-to-the-internet)
-  * [Installing Gentoo installation files](#installing-gentoo-installation-files)
+  * [Configuring the network](#configuring-the-network)
+    * [Connecting to the internet (wireless)](#connecting-to-the-internet-wireless)
+  * [Installing the Gentoo installation files](#installing-gentoo-installation-files)
     * [Downloading the stage tarball](#downloading-the-stage-tarball)
     * [Configuring compile options](#configuring-compile-options)
+  * [Installing the Gentoo base system](#installing-the-gentoo-base-system)
+    * [Selecting Mirrors](#selecting-mirrors)
+    * [Copy DNS info](#copy-dns-info)
+    * [Mounting the necessary fileystems](#mounting-the-necessary-filesystems)
 
 <p align="center">
   <img src="doc/img/gentoo-waifu.png" alt="gentoo-waifu">
@@ -72,16 +76,16 @@ mkdir -p /mnt/boot/efi                    # create the esp dir
 mount /dev/sdX1 /mnt/boot/efi             # mounts the efi part to the efi dir
 ```
 
-## Configuring the network (wireless)
+## Configuring the network
 
-### Connecting to the internet
+### Connecting to the internet (wireless)
 ```
 wpa_passphrase "ESSID" "PASSWORD" | tee /etc/wpa_supplicant.conf          # stores password on wpa conf
 wpa_supplicant -B -c /etc/wpa_supplicant.conf -i CARD_NAME                # use ipconfig to find out your card name
 dhcpcd CARD_NAME                                                          # sets an ip to your card
 ```
 
-## Installing Gentoo installation files
+## Installing the Gentoo installation files
 
 ### Downloading and unpacking the stage tarball
 ```
@@ -103,13 +107,18 @@ nano /mnt/gentoo/etc/portage/make.conf
 
 `++ MAKEOPTS="-jY"`    
 
-### Changing the mirrors
+## Installing the Gentoo base system
+
+### Selecting mirrors
 ```
 mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf          
 # select the preferred mirror
+
+mkdir --parents /mnt/gentoo/etc/portage/repos.conf
+cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 ```
 
-### Copying the DNS info
+### Copy DNS info 
 ```
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc
 ```
