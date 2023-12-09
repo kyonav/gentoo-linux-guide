@@ -189,8 +189,8 @@ nano /etc/portage/make.conf
 `+ ACCEPT_LICENSE="*"`   
 
 ### Timezone
-
 > OpenRC
+
 ```
 echo "Asia/Dubai" > /etc/timezone               # Asia/Dubai is just an example 
 emerge --config sys-libs/timezone-data          
@@ -208,14 +208,17 @@ nano /etc/locale.gen
 
 ```
 locale-gen
+```
 
-### Locale selection
+> Locale selection
 
+```
 eselect locale list
 eselect locale set NUMBER
 ```
 
 ### Reloading the environment
+
 ```
 env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ```
@@ -229,11 +232,13 @@ emerge --ask sys-kernel/gentoo-sources sys-kernel/gentoo-kernel-bin sys-kernel/l
 
 ### Kernel manual compiling (chadding)
 > Not necessary if installed kernel binaries
+
 ```
 emerge --ask sys-kernel/gentoo-sources sys-kernel/linux-firmware          
 cd /usr/src/linux*
 make menuconfig                                 
 ```
+
 ```
 make && make modules_install && make install
 ```
