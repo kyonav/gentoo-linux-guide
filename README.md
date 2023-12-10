@@ -153,12 +153,12 @@ Does ->
 cd /mnt/gentoo                                                           # cd into the mount point
 links https://gentoo.org/downloads                                       # use links tool to download amd64 stage3-openrc tarball
 ```
-> Downloading a stage tarball
+> Downloads the stage tarball
 
 ```
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner 
 ```
-> Unpacking the stage tarball
+> Unpacks the stage tarball
 
 ### Configuring compile options
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
@@ -170,6 +170,9 @@ nano /mnt/gentoo/etc/portage/make.conf
 `>> FFLAGS=*`
 
 `++ MAKEOPTS="-jY"`    
+
+*...*
+> Change the threads number used for compiling
 
 ## Installing the Gentoo base system
 
@@ -220,11 +223,10 @@ Does ->
 > Changes the terminal style
 
 ### Configuring portage
-
-> Installing a Gentoo ebuild repository snapshot from the web
 ```
 emerge-webrsync
 ```
+> Installs a gentoo ebuild repository snapshot from the web
 
 ### Reading news items
 ```
@@ -242,6 +244,7 @@ eselect profile set profile_number_goes_here
 ```
 emerge --ask --verbose --update --deep --newuse @world
 ```
+> Updates the @world set packages
 
 ### Configuring the USE variable
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
@@ -266,6 +269,8 @@ nano /etc/portage/make.conf
 
 `++ ACCEPT_LICENSE="*"`   
 
+> Accepts all licenses needed to install packages
+
 ### Timezone
 *OpenRC*
 
@@ -273,6 +278,7 @@ nano /etc/portage/make.conf
 echo "Asia/Dubai" > /etc/timezone               
 emerge --config sys-libs/timezone-data          
 ```
+> Stores your timezone details in /etc/timezone, then configures it
 
 ### Configure locales
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
@@ -308,6 +314,7 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ```
 emerge --ask sys-kernel/linux-firmware
 ```
+> Installs firmware updates needed for some hardwares
 
 *Microcode (Intel)*
 
@@ -505,12 +512,12 @@ EDITOR=nvim visudo
 
 ### Creating users
 ```
-useradd -m G wheel,users,video,audio,usb -s /bin/bash *your_username_goes_here*
+useradd -m G wheel,users,video,audio,usb -s /bin/bash your_username_goes_here
 ```
 > Creates a user and add it to some groups
 <br/>
 
 ```
-passwd *your_username_goes_here*
+passwd your_username_goes_here
 ```
 > Changes the password of your user
