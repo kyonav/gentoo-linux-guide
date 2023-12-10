@@ -79,6 +79,10 @@ wipefs -a /dev/sdX
 ```
 parted -a optimal /dev/sdX
 unit MiB
+```
+
+*Create new disk label/ removing all partitions*
+```
 mklabel gpt                                
 ```
 > Opens the disk on parted, changes the unit to MiB and creates a gpt partition label
