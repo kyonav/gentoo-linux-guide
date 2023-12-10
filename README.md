@@ -81,13 +81,13 @@ unit MiB
 ```
 > Open the disk on parted and change the unit to MiB
 
-*Create new disk label/ removing all partitions*
+_Create new disk label/ removing all partitions_
 ```
 mklabel gpt                                
 ```
 > Create a new partition label, erasing everything :(
 
-*Creating the EFI System partition (ESP)*
+_Creating the EFI System partition (ESP)_
 ```
 mkpart "EFI" fat32 1MiB 129MiB
 ```
@@ -112,21 +112,25 @@ set 1 esp
 
 quit
 ```
-> Set partition 1 EFI System partition _on_
+> Set partition 1 EFI System partition _on_ and quit
 
 ### Creating filesystems 
+_Filesystems, Appling a filesystem to a partition_
+
 ```
 mkfs.fat -F32 /dev/sdX1          
+```
+> Format the ESP to fat32 filesystem
+
+```
 mkfs.ext4 /dev/sdX2             
+```
+> Format the rootfs partition to ext4 filesystem
+
+```
 mkfs.ext4 /dev/sdx3            
 ```
-Formats ->
-
-> /dev/sdX1 to vfat(fat32)
-
-> /dev/sdX2 to ext4 file system
-
-> /dev/sdX3 to ext4 file system
+> Format the home partition to ext4 filesystem
 
 ### Mounting the root partition
 ```
@@ -276,7 +280,6 @@ nano /etc/portage/make.conf
 
 ### Optional: Configure the ACCEPT_LICENSE variable
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
 
 ```
 nano /etc/portage/make.conf
@@ -290,7 +293,7 @@ nano /etc/portage/make.conf
 > Accepts all licenses needed to install packages
 
 ### Timezone
-*OpenRC*
+_OpenRC_
 
 ```
 echo "Asia/Dubai" > /etc/timezone               
@@ -330,14 +333,14 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ## Configuring the kernel
 
 ### Optional: Installing firmware and/or microcode
-*Firmware*
+_Firmware_
 
 ```
 emerge --ask sys-kernel/linux-firmware
 ```
 > Installs firmware updates needed for some hardwares
 
-*Microcode (Intel)*
+_Microcode (Intel)_
 
 ```
 emerge --ask sys-firmware/intel-microcode
@@ -376,7 +379,7 @@ Does ->
 ### Filesystem information
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 
-*Create the Fstab file, for a EFI system*
+_Create the Fstab file, for a EFI system_
 
 ```
 nano /etc/fstab
@@ -394,26 +397,26 @@ nano /etc/fstab
 ### Networking information 
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 
-*hostname, Set the hostname for (OpenRC or systemd)*
+_hostname, Set the hostname for (OpenRC or systemd)_
 
 ```
 echo HOSTNAME > /etc/hostname
 ```
 
-*Network, DHCP via dhcpcd (any init system)*
+_Network, DHCP via dhcpcd (any init system)_
 
 ```
 emerge --ask net-misc/dhcpcd
 ```
 
-*DHCP, To enable and then start the service on OpenRC systems*
+_DHCP, To enable and then start the service on OpenRC systems_
 
 ```
 rc-update add dhcpcd default
 rc-service dhcpcd start
 ```
 
-*Configuring the network, DHCP definition*
+_Configuring the network, DHCP definition_
 
 ```
 emerge --ask --noreplace net-misc/netifrc
@@ -427,7 +430,7 @@ nano /etc/conf.d/net
 ...
 > Changes the card used on the /etc/conf.d/net config file and tells your card to use dhcp
 
-*Configure the network, Automatically start networking at boot*
+_Configure the network, Automatically start networking at boot_
 
 ```
 cd /etc/init.d
@@ -435,7 +438,7 @@ ln -s net.lo net.CARD-NAME
 rc-update add net.CARD-name default
 ```
 
-*The hosts file, Filling in the networking information*
+_The hosts file, Filling in the networking information_
 
 ```
 nano /etc/hosts
@@ -457,7 +460,7 @@ passwd
 ```
 > Changes the root user password
 
-*Init and boot configuration, OpenRC*
+_Init and boot configuration, OpenRC_
 ```
 nano /etc/conf.d/keymaps
 ```
@@ -474,7 +477,7 @@ rc -update add sysklogd default
 > Installs the ksyslogd OpenRC system logger
 
 ### Networking tools
-*Optional: install wireless networking tools*
+_Optional: install wireless networking tools_
 
 ```
 emerge --ask net-wireless/wpa_supplicant
@@ -482,20 +485,20 @@ emerge --ask net-wireless/wpa_supplicant
 ## Configuring the bootloader
 
 ### Selecting a bootloader
-*Default: GRUB, Emerge*
+_Default: GRUB, Emerge_
 
 ```
 echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 emerge --ask --verbose sys-boot/grub
 ```
 
-*Install, For EFI systems*
+_Install, For EFI systems_
 ```
 grub-install --target=x86_64-efi --efi-directory=/path/to/esp --bootloader-id=anybootloadername
 ```
 > Installs grub with EFI on the created esp directory with the anybootloadername bootloader id
 
-*Configure*
+_Configure_
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
