@@ -138,29 +138,30 @@ Creates then mounts the ->
 
 ### Connecting to the internet (wireless)
 ```
-wpa_passphrase "ESSID" "PASSWORD" | tee /etc/wpa_supplicant.conf          # stores password on wpa conf
-wpa_supplicant -B -c /etc/wpa_supplicant.conf -i CARD_NAME                # use ipconfig to find out your card name
-dhcpcd CARD_NAME                                                          # sets an ip to your card
+wpa_passphrase "ESSID_goes_here" "password_goes_here | tee /etc/wpa_supplicant.conf          
+wpa_supplicant -B -c /etc/wpa_supplicant.conf -i card_name_goes_here               
+dhcpcd card_name_goes_here                                                        
 ```
+Does ->
+
+> Sends the ESSID and password to the wpa_supplicant.conf file
 
 ## Installing the Gentoo installation files
 
 ### Installing a stage tarball
-> Downloading the stage tarball
 ```
 cd /mnt/gentoo                                                           # cd into the mount point
 links https://gentoo.org/downloads                                       # use links tool to download amd64 stage3-openrc tarball
 ```
-<br/>
+> Downloading a stage tarball
 
-> Unpacking the stage tarball
 ```
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner 
 ```
+> Unpacking the stage tarball
 
 ### Configuring compile options
-> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
+[Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 
 ```
 nano /mnt/gentoo/etc/portage/make.conf
@@ -175,11 +176,18 @@ nano /mnt/gentoo/etc/portage/make.conf
 ### Selecting mirrors
 ```
 mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf          
-# select the preferred mirror
+```
+> Changes the gentoo mirrors
 
+```
 mkdir --parents /mnt/gentoo/etc/portage/repos.conf
 cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 ```
+Does ->
+
+> Creates a parent directory on portage called repos.conf
+
+> Copy repos.conf file to the created parent directory as gentoo.conf
 
 ### Copy DNS info 
 ```
@@ -196,14 +204,21 @@ mount --make-rslave /mnt/gentoo/dev
 mount --bind /run /mnt/gentoo/run
 mount --make-slave /mnt/gentoo/run
 ```
+> Some fun copy and pasting >.<
 
 ### Entering the new environment
 
 ```
-chroot /mnt/gentoo                        # chroot into the filesystem
-source /etc/profile                       # sources the shell profile                       
-export PS1="(chroot UwU) ${PS1}"          # changes the terminal style
+chroot /mnt/gentoo            
+source /etc/profile          
+export PS1="(chroot UwU) ${PS1}"          
 ```
+Does ->
+
+> Chroots into the file system
+> Sources the shell
+> Changes the terminal style
+
 ### Configuring portage
 
 > Installing a Gentoo ebuild repository snapshot from the web
@@ -214,13 +229,13 @@ emerge-webrsync
 ### Reading news items
 ```
 eselect news list
-eselect news read NUMBER            # reads the selected news
+eselect news read news_number_goes_here
 ```
 
 ### Choosing the right profile
 ```
 eselect profile list
-eselect profile set NUMBER          # selects the desired profile (standard for minimal)
+eselect profile set profile_number_goes_here          
 ```
 
 ### Updating the @world set 
@@ -229,8 +244,7 @@ emerge --ask --verbose --update --deep --newuse @world
 ```
 
 ### Configuring the USE variable
-> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
+[Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 
 ```
 nano /etc/portage/make.conf
@@ -242,7 +256,7 @@ nano /etc/portage/make.conf
 <br>
 
 ### Optional: Configure the ACCEPT_LICENSE variable
-> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+[Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
 
 ```
@@ -252,30 +266,29 @@ nano /etc/portage/make.conf
 `> USE*`
 
 `+ ACCEPT_LICENSE="*"`   
-<br/>
 
 ### Timezone
-> OpenRC
+OpenRC
+
 ```
-echo "Asia/Dubai" > /etc/timezone               # Asia/Dubai is just an example 
+echo "Asia/Dubai" > /etc/timezone               
 emerge --config sys-libs/timezone-data          
 ```
 
 ### Configure locales
-> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+[Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
 
-> Locale generation
 ```
 nano /etc/locale.gen
 ```
 
 `-# #en_US.UTF-8 UTF-8`     
-<br/>
 
 ```
 locale-gen
 ```
+> Generates the locales
 <br/>
 
 > Locale selection
@@ -294,54 +307,54 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ## Configuring the kernel
 
 ### Optional: Installing firmware and/or microcode
-> Firmware
+Firmware
 
 ```
 emerge --ask sys-kernel/linux-firmware
 ```
-<br/>
 
-> Microcode (Intel)
+Microcode (Intel)
 
 ```
 emerge --ask sys-firmware/intel-microcode
 ```
 
 ### Kernel configuration and compilation
-> Installing a distribution kernel (sadge)
-
 ```
 sys-kernel/gentoo-kernel-bin 
 ```
+> Installs a distribution kernel (sadge)
 
 ### Installing the kernel sources
-> Only needed if installing genkernel or manually compiling
 
 ```
 emerge --ask sys-kernel/gentoo-sources          
 ```
+> Installs the kernel sources for using genkernel or manually compiling
 <br/>
 
 ### Manual configuration
-> Alternative step (chadding)
-
 ``` 
 emerge --ask sys-apps/pciutils
 cd /usr/src/linux*
 make menuconfig
-```
-
-```
 make && make modules_install && make install
 ```
+Does ->
+
+> Emerges lspci(pciutils) for listing the hardware
+
+> Cd into the linux kernel directory
+
+> Makes a menu for editing the kernel
+
+> Makes changes and install modules and the kernel
 
 ### Filesystem information
-> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+[Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
 
-> Creating the fstab file
-
-> For a EFI system
+Create the Fstab file, for a EFI system
 
 ```
 nano /etc/fstab
@@ -353,37 +366,33 @@ nano /etc/fstab
 
 `++ /dev/sdX3        /home            ext4         defaults,noatime        0 1`
 
+> Creates the fstab file for storing and tweaking disks
+
 ### Networking information 
-> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
+[Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
 
-> hostname
-
-> Set the hostname (OpenRC or systemd)
+hostname, Set the hostname for (OpenRC or systemd)
 
 ```
 echo HOSTNAME > /etc/hostname
 ```
-<br/>
 
-> Network
+Network, DHCP via dhcpcd (any init system)
 
-> DHCP via dhcpcd (any init system)
 ```
 emerge --ask net-misc/dhcpcd
 ```
-<br/>
 
-> To enable and then start the service on OpenRC systems:
+DHCP, To enable and then start the service on OpenRC systems
+
 ```
 rc-update add dhcpcd default
 rc-service dhcpcd start
 ```
-<br/>
 
-> Configuring the network
+Configuring the network, DHCP definition
 
-> DHCP definition
 ```
 emerge --ask --noreplace net-misc/netifrc
 nano /etc/conf.d/net
@@ -393,18 +402,18 @@ nano /etc/conf.d/net
 
 `++ config_CARD-NAME="dhcp"`
 
-Use ipconfig to find out your CARD-NAME
 <br/><br/>
 
-> Automatically start networking at boot
+Configure the network, Automatically start networking at boot
+
 ```
 cd /etc/init.d
 ln -s net.lo net.CARD-NAME
 rc-update add net.CARD-name default
 ```
-<br/>
 
-> The hosts file
+The hosts file, Filling in the networking information
+
 ```
 nano /etc/hosts
 ```
@@ -413,21 +422,17 @@ nano /etc/hosts
 
 `-- 127.0.0.1    localhost`
 
-`++ 127.0.0.1    HOSTNAME.homenetwork    HOSTNAME    localhost`
+`++ 127.0.0.1    your_hostname_goes_here.homenetwork    your_hostname_hoes_here    localhost`
 
-HOSTNAME being the hostname you set on /etc/hostname
 
 ### System information
-<br/>
 
-> Root password
 ```
 passwd
 ```
-<br/>
+> Changes the root password
 
-> Init and boot configuration
-> OpenRC
+Init and boot configuration, OpenRC
 ```
 nano /etc/conf.d/keymaps
 ```
@@ -437,38 +442,35 @@ nano /etc/conf.d/keymaps
 
 ### System logger
 
-> OpenRC
 ```
 emerge --ask app-admin/sysklogd
 rc -update add sysklogd default
 ```
+> Installs the ksyslogd OpenRC system logger
 
 ### Networking tools
-> Optional: install wireless networking tools
+Optional: install wireless networking tools
+
 ```
 emerge --ask net-wireless/wpa_supplicant
 ```
 ## Configuring the bootloader
 
 ### Selecting a bootloader
+Default: GRUB, Emerge
 
-> Default: GRUB
-> Emerge
 ```
 echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 emerge --ask --verbose sys-boot/grub
 ```
-<br/>
 
-> Install
-> EFI Systems
+*Install, For EFI systems*
 ```
 grub-install --target=x86_64-efi --efi-directory=/path/to/esp --bootloader-id=anybootloadername
 # --efi-directory is the one created in the partitioning the disks section
 ```
-<br/>
 
-> Configure
+*Configure
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
