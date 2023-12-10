@@ -69,7 +69,6 @@
 
 ### Partitioning the disks with GPT for UEFI
 [Cheat/ Letter](https://github.com/kyonav/gentoo-linux-guide/blob/3d1040750d7400e389b69f4a7de147371c0bf915/README.md#L34)
-<br/>
 
 ```
 wipefs -a /dev/sdX 
@@ -80,32 +79,40 @@ wipefs -a /dev/sdX
 parted -a optimal /dev/sdX
 unit MiB
 ```
+> Open the disk on parted and change the unit to MiB
 
 *Create new disk label/ removing all partitions*
 ```
 mklabel gpt                                
 ```
-> Opens the disk on parted, changes the unit to MiB and creates a gpt partition label
+> Create a new partition label, erasing everything :(
+
+*Creating the EFI System partition (ESP)*
+```
+mkpart "EFI" fat32 1MiB 129MiB
+```
+> Create a 128MiB fat32 EFI System partition
+
+_Creating the rootfs partition_
 
 ```
-mkpart "EFI" ext4 1MiB 129MiB
 mkpart "rootfs" ext4 129MiB 70GiB
+```
+> Create a 70GiB ext4 root filesystem partition
+
+_Creating the home partition_
+
+```
 mkpart "home" ext4 70GiB 100%   
+```
+> Create a _remaining disk space_ ext4 home partition
+
+```
 set 1 esp                      
 
 quit
 ```
-Creates/ does ->
-
-> /dev/sdX1 partition labeled "EFI" using vfat(fat32) filesystem with 128MiB of size
-
-> /dev/sdX2 partition labeled "rootfs" using ext4 filesystem with 70GiB of size
-
-> /dev/sdX3 partition labeled "home" using ext4 filesystem with remaining available disk for size
-
-> sets efi system partition on for /dev/sdX1
-
-> quits parted
+> Set partition 1 EFI System partition _on_
 
 ### Creating filesystems 
 ```
