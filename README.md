@@ -171,7 +171,7 @@ nano /mnt/gentoo/etc/portage/make.conf
 
 `++ MAKEOPTS="-jY"`    
 
-*...*
+...
 > Change the threads number used for compiling
 
 ## Installing the Gentoo base system
@@ -257,6 +257,9 @@ nano /etc/portage/make.conf
 
 `++ USE=""` 
 
+...
+> Add the USE variable to edit flags for enabling/disabling support for dependencies
+
 ### Optional: Configure the ACCEPT_LICENSE variable
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 <br/>
@@ -269,6 +272,7 @@ nano /etc/portage/make.conf
 
 `++ ACCEPT_LICENSE="*"`   
 
+...
 > Accepts all licenses needed to install packages
 
 ### Timezone
@@ -288,6 +292,9 @@ nano /etc/locale.gen
 ```
 
 `-# #en_US.UTF-8 UTF-8`     
+
+...
+> Enables the en_us.UTF8 UTF8 locale to be generated
 
 ```
 locale-gen
@@ -367,6 +374,7 @@ nano /etc/fstab
 
 `++ /dev/sdX3        /home            ext4         defaults,noatime        0 1`
 
+...
 > Creates the fstab file for storing and tweaking disks
 
 ### Networking information 
@@ -400,7 +408,10 @@ nano /etc/conf.d/net
 
 `-- config_eth0=*`
 
-`++ config_CARD-NAME="dhcp"`
+`++ config_your-card-name-goes-here="dhcp"`
+
+...
+> Changes the card used on the /etc/conf.d/net config file and tells your card to use dhcp
 
 *Configure the network, Automatically start networking at boot*
 
@@ -422,6 +433,8 @@ nano /etc/hosts
 
 `++ 127.0.0.1    your_hostname_goes_here.homenetwork    your_hostname_hoes_here    localhost`
 
+...
+> Edit the hosts file to use your machine hostname
 
 ### System information
 
@@ -491,31 +504,32 @@ reboot
 ```
 emerge -av app-admin/sudo                      
 ```
-> User root privileges
+> Enables the possibility of pleb users having root privileges
 
 ```
 emerge -av app-editors/neovim                   
 ```
-> Preferred text editor
+> Install your preferred text editor here >.<
 
 ### Editing groups
-> [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
+[Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
 
 ```
-EDITOR=nvim visudo
+EDITOR=your_editor_goes_here visudo
 ```
 
 `>> Uncomment to allow members of group wheel*`
 
 `-# #%wheel ALL=(ALL) ALL` 
 
+...
+> Gives %wheel group users root permissions
+
 ### Creating users
 ```
 useradd -m G wheel,users,video,audio,usb -s /bin/bash your_username_goes_here
 ```
 > Creates a user and add it to some groups
-<br/>
 
 ```
 passwd your_username_goes_here
