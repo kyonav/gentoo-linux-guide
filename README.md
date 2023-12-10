@@ -120,7 +120,7 @@ _Filesystems, Appling a filesystem to a partition_
 ```
 mkfs.fat -F32 /dev/sdX1          
 ```
-> Format the ESP to fat32 filesystem
+> Format the ESP (EFI System partition) to fat32 filesystem
 
 ```
 mkfs.ext4 /dev/sdX2             
