@@ -250,10 +250,9 @@ emerge --ask --verbose --update --deep --newuse @world
 nano /etc/portage/make.conf
 ```
 
-`> NOTE*`
+`>> NOTE*`
 
-`+ USE=""` 
-<br>
+`++ USE=""` 
 
 ### Optional: Configure the ACCEPT_LICENSE variable
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
@@ -263,12 +262,12 @@ nano /etc/portage/make.conf
 nano /etc/portage/make.conf
 ```
 
-`> USE*`
+`>> USE*`
 
-`+ ACCEPT_LICENSE="*"`   
+`++ ACCEPT_LICENSE="*"`   
 
 ### Timezone
-OpenRC
+*OpenRC*
 
 ```
 echo "Asia/Dubai" > /etc/timezone               
@@ -277,7 +276,6 @@ emerge --config sys-libs/timezone-data
 
 ### Configure locales
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
 
 ```
 nano /etc/locale.gen
@@ -288,15 +286,13 @@ nano /etc/locale.gen
 ```
 locale-gen
 ```
-> Generates the locales
-<br/>
-
-> Locale selection
+> Generates the uncommented locales
 
 ```
 eselect locale list
-eselect locale set NUMBER
+eselect locale set locale_number_goes_here
 ```
+> Selects the generated locale
 
 ### Reloading the environment
 
@@ -307,13 +303,13 @@ env-update && source /etc/profile && export PS1="(chroot UwU) ${PS1}"
 ## Configuring the kernel
 
 ### Optional: Installing firmware and/or microcode
-Firmware
+*Firmware*
 
 ```
 emerge --ask sys-kernel/linux-firmware
 ```
 
-Microcode (Intel)
+*Microcode (Intel)*
 
 ```
 emerge --ask sys-firmware/intel-microcode
@@ -331,7 +327,6 @@ sys-kernel/gentoo-kernel-bin
 emerge --ask sys-kernel/gentoo-sources          
 ```
 > Installs the kernel sources for using genkernel or manually compiling
-<br/>
 
 ### Manual configuration
 ``` 
@@ -342,19 +337,18 @@ make && make modules_install && make install
 ```
 Does ->
 
-> Emerges lspci(pciutils) for listing the hardware
+> Emerges lspci (pciutils) for listing the hardware
 
-> Cd into the linux kernel directory
+> Changes directory into the linux kernel directory
 
 > Makes a menu for editing the kernel
 
-> Makes changes and install modules and the kernel
+> Compiles your favorite modules and your kernel then installs it (chadding)
 
 ### Filesystem information
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
 
-Create the Fstab file, for a EFI system
+*Create the Fstab file, for a EFI system*
 
 ```
 nano /etc/fstab
@@ -370,28 +364,27 @@ nano /etc/fstab
 
 ### Networking information 
 [Cheat/ Symbol](https://github.com/kyonav/gentoo-linux-guide/blob/0aab1097f4b22484ae405b2e89bc7687a005c817/README.md?plain=1#L22)
-<br/>
 
-hostname, Set the hostname for (OpenRC or systemd)
+*hostname, Set the hostname for (OpenRC or systemd)*
 
 ```
 echo HOSTNAME > /etc/hostname
 ```
 
-Network, DHCP via dhcpcd (any init system)
+*Network, DHCP via dhcpcd (any init system)*
 
 ```
 emerge --ask net-misc/dhcpcd
 ```
 
-DHCP, To enable and then start the service on OpenRC systems
+*DHCP, To enable and then start the service on OpenRC systems*
 
 ```
 rc-update add dhcpcd default
 rc-service dhcpcd start
 ```
 
-Configuring the network, DHCP definition
+*Configuring the network, DHCP definition*
 
 ```
 emerge --ask --noreplace net-misc/netifrc
@@ -402,9 +395,7 @@ nano /etc/conf.d/net
 
 `++ config_CARD-NAME="dhcp"`
 
-<br/><br/>
-
-Configure the network, Automatically start networking at boot
+*Configure the network, Automatically start networking at boot*
 
 ```
 cd /etc/init.d
@@ -412,7 +403,7 @@ ln -s net.lo net.CARD-NAME
 rc-update add net.CARD-name default
 ```
 
-The hosts file, Filling in the networking information
+*The hosts file, Filling in the networking information*
 
 ```
 nano /etc/hosts
@@ -430,9 +421,9 @@ nano /etc/hosts
 ```
 passwd
 ```
-> Changes the root password
+> Changes the root user password
 
-Init and boot configuration, OpenRC
+*Init and boot configuration, OpenRC*
 ```
 nano /etc/conf.d/keymaps
 ```
@@ -449,7 +440,7 @@ rc -update add sysklogd default
 > Installs the ksyslogd OpenRC system logger
 
 ### Networking tools
-Optional: install wireless networking tools
+*Optional: install wireless networking tools*
 
 ```
 emerge --ask net-wireless/wpa_supplicant
@@ -457,7 +448,7 @@ emerge --ask net-wireless/wpa_supplicant
 ## Configuring the bootloader
 
 ### Selecting a bootloader
-Default: GRUB, Emerge
+*Default: GRUB, Emerge*
 
 ```
 echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
@@ -470,7 +461,7 @@ grub-install --target=x86_64-efi --efi-directory=/path/to/esp --bootloader-id=an
 # --efi-directory is the one created in the partitioning the disks section
 ```
 
-*Configure
+*Configure*
 ```
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
