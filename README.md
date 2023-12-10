@@ -56,6 +56,7 @@
 | Letter  | Equals           |
 | :------ | :--------------- |
 | **X**   | partition letter |
+| **Y**   | threads number   |
 
 | Symbol  | Means          |
 | :------ | :------------- |
@@ -150,9 +151,11 @@ Does ->
 
 ### Installing a stage tarball
 ```
-cd /mnt/gentoo                                                           # cd into the mount point
-links https://gentoo.org/downloads                                       # use links tool to download amd64 stage3-openrc tarball
+cd /mnt/gentoo               
+links https://gentoo.org/downloads
 ```
+-> Then download the amd64 > stage3-openrc or the one you want
+
 > Downloads the stage tarball
 
 ```
@@ -478,8 +481,8 @@ emerge --ask --verbose sys-boot/grub
 *Install, For EFI systems*
 ```
 grub-install --target=x86_64-efi --efi-directory=/path/to/esp --bootloader-id=anybootloadername
-# --efi-directory is the one created in the partitioning the disks section
 ```
+> Installs grub with EFI on the created esp directory with the anybootloadername bootloader id
 
 *Configure*
 ```
